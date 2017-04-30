@@ -35,10 +35,10 @@ class CNABSicoobREM400 extends CNABSicoob {
 		$this->addField("\r\n", 2);
 	}
 
-	private function retNossoNumero($NossoNumero){
+	public static function retNossoNumero($NossoNumero, $agencia, $convenio){
 
 		$NossoNumero = CNABUtil::fillString($NossoNumero, 7, "0");
-		$sequencia = CNABUtil::fillString($this->getAgencia(), 4, "0"). CNABUtil::fillString(str_replace("-","",$this->getConvenio()),10, "0") . CNABUtil::fillString($NossoNumero, 7, "0");
+		$sequencia = CNABUtil::fillString($agencia, 4, "0"). CNABUtil::fillString(str_replace("-","", $convenio),10, "0") . CNABUtil::fillString($NossoNumero, 7, "0");
 		//$sequencia = CNABUtil::fillString($this->getAgencia(), 4, "0"). CNABUtil::fillString(str_replace("-", "", $this->getConta() . $this->getVerificadorConta()), 10, "0") . CNABUtil::fillString($NossoNumero, 7, "0");
 		$cont=0;
 		$calculoDv = '';
@@ -70,20 +70,24 @@ class CNABSicoobREM400 extends CNABSicoob {
 		$Dv = $Resto > 1 ? 11 - $Resto : 0;
 
 		/*
-		if ($Dv == 0)
-			$Dv = 0;
+		 if ($Dv == 0)
+		 	$Dv = 0;
 
-		if ($Dv == 1)
-			$Dv = 0;
+		 if ($Dv == 1)
+		 	$Dv = 0;
 
-		if ($Dv > 9)
-			$Dv = 0;
-		*/
+		 if ($Dv > 9)
+		 	$Dv = 0;
+		 */
 
-		return CNABUtil::fillString($NossoNumero, 11, "0") . $Dv;
+		 return CNABUtil::fillString($NossoNumero, 11, "0") . $Dv;
 	}
 
-	public function addTitulo(CNABSicoobTituloREM400 $oTitulo){
+	private function retNossoNumeroOBJ($NossoNumero){
+		return self::retNossoNumero($NossoNumero, $this->getAgencia(), $this->getConvenio());
+	}
+
+	public function addTitulo(CNABSicoobTituloREM400 $oTitulo, $calcNossoNumero = true){
 
 														//SEQ	INICIO	FINAL	TAM	MÁSCARA	CAMPO / DESCRIÇÃO / CONTEÚDO
 		$this->addField("1", 1);							//1		001		001		001	9(01)	Identificação do Registro Detalhe: 1 (um)
@@ -98,12 +102,15 @@ class CNABSicoobREM400 extends CNABSicoob {
 		//$this->addField($this->getConvenio(), 6);					//8		032		037		006	9(06)	Número do Convênio de Cobrança do Beneficiário: "000000"
 		$this->addField("0", 6, "0");					//8		032		037		006	9(06)	Número do Convênio de Cobrança do Beneficiário: "000000"
 		$this->addField("", 25);								//9		038		062		025	X(25)	Número de Controle do Participante: Preencher com espaços em branco
-		$this->addField((int)$this->getCarteira() == 1 ? $this->retNossoNumero($oTitulo->getNossoNumero()): $oTitulo->getNossoNumero(), 12);					//10	063		074		012	9(12)	"Nosso Número:
+
+		$this->addField((int)$this->getCarteira() == 1 && $calcNossoNumero ? $this->retNossoNumeroOBJ($oTitulo->getNossoNumero()): $oTitulo->getNossoNumero(), 12);
+																							//10	063		074		012	9(12)	"Nosso Número:
 																							//- Para comando 01 com emissão a cargo do Sicoob (vide planilha ""Capa"" deste arquivo e lista de comandos seq. 23): Preencher com zeros
 																							//- Para comando 01 com emissão a cargo do Beneficiário ou para os demais comandos (vide planilha ""Capa"" deste arquivo e lista de comandos seq. 23):
 																							//Preencher da seguinte forma:
 																							//- Posição 063 a 073 – Número seqüencial a partir de ""0000000001"", não sendo admitida reutilização ou duplicidade.
 																							//- Posição 074 a 074 – DV do Nosso-Número, calculado pelo módulo 11."
+
 		$this->addField($oTitulo->getParcela(), 2, "0");					//11	075		076		002	9(02)	Número da Parcela: "01" se parcela única
 		$this->addField($oTitulo->getGrupoValor(), 2, "0");							//12	077		078		002	9(02)	Grupo de Valor: "00"
 		$this->addField("", 3);								//13	079		081		003	X(03)	Complemento do Registro: Preencher com espaços em branco

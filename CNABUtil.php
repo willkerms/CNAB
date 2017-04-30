@@ -1,6 +1,8 @@
 <?php
 namespace CNAB;
 
+use PQD\PQDUtil;
+
 /**
  * Classe para geração de CNAB Bancário
  *
@@ -33,6 +35,72 @@ class CNABUtil {
 	}
 
 	/**
+	 * Retorna um float para a string dada
+	 *
+	 * @param string $value
+	 * @return number
+	 */
+	public static function retFloat($value, $precision = 2){
+
+		if (!empty($value)){
+			$decimal = substr($value, $precision * -1);
+			$value = substr($value, 0, strlen($value) - $precision);
+
+			return (double)($value . '.' . $decimal);
+		}
+		else
+			return 0.0;
+	}
+
+	/**
+	 * Retorna int
+	 *
+	 * @param string $value
+	 * @return int
+	 */
+	public static function retInt($value){
+		return (int)$value;
+	}
+
+	/**
+	 * Retorna uma data no formato americano
+	 *
+	 * @param string $value
+	 * @return string
+	 */
+	public static function retDateUS($date){
+
+		if(!empty($date) && $date != '000000'){
+			$date = \DateTime::createFromFormat('dmy', $date);
+
+			if($date instanceof \DateTime)
+				return $date->format('Y-m-d');
+		}
+
+		return null;
+	}
+
+	/**
+	 * Retira zeros a esquerda
+	 *
+	 * @param string $value
+	 * @return string
+	 */
+	public static function retiraZeros($value){
+		return preg_replace("/^0*/", "", $value);
+	}
+
+	/**
+	 * Retira espaços e zeros
+	 *
+	 * @param string $value
+	 * @return string
+	 */
+	public static function retiraEspacosEZeros($value){
+		return trim(self::retiraZeros($value));
+	}
+
+	/**
 	 * Preenche com o caracter informado em $fill de acordo com o len passado
 	 *
 	 * @param string $value
@@ -49,6 +117,6 @@ class CNABUtil {
 	 * @return mixed
 	 */
 	public static function onlyNumbers($string){
-		return preg_replace("/[^0-9]/", "", $string);
+		return PQDUtil::onlyNumbers($string);
 	}
 }
