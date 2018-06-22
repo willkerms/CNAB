@@ -93,7 +93,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 
 	/**
 	 * @field(name=tpMovimentacao, description=Identificação de Ocorrência, type=string)
-	 * @list({"10":"Baixado conforme instru\u00e7\u00f5es da Ag\u00eancia","11":"Em Ser - Arquivo de T\u00edtulos pendentes","12":"Abatimento Concedido","13":"Abatimento Cancelado","14":"Vencimento Alterado","15":"Liquida\u00e7\u00e3o em Cart\u00f3rio","16":"T\u00edtulo Pago em Cheque \u2013 Vinculado","17":"Liquida\u00e7\u00e3o ap\u00f3s baixa ou T\u00edtulo n\u00e3o registrado","18":"Acerto de Deposit\u00e1ria","19":"Confirma\u00e7\u00e3o Receb. Inst. de Protesto","20":"Confirma\u00e7\u00e3o Recebimento Instru\u00e7\u00e3o Susta\u00e7\u00e3o de Protesto","21":"Acerto do Controle do Participante","22":"T\u00edtulo Com Pagamento Cancelado","23":"Entrada do T\u00edtulo em Cart\u00f3rio","24":"Entrada rejeitada por CEP Irregular","25":"Confirma\u00e7\u00e3o Receb.Inst.de Protesto Falimentar","27":"Baixa Rejeitada","28":"D\u00e9bito de tarifas/custas","29":"Ocorr\u00eancias do Pagador","30":"Altera\u00e7\u00e3o de Outros Dados Rejeitados","32":"Instru\u00e7\u00e3o Rejeitada","33":"Confirma\u00e7\u00e3o Pedido Altera\u00e7\u00e3o Outros Dados","34":"Retirado de Cart\u00f3rio e Manuten\u00e7\u00e3o Carteira","35":"Desagendamento do d\u00e9bito autom\u00e1tico","40":"Estorno de pagamento","55":"Sustado judicial","68":"Acerto dos dados do rateio de Cr\u00e9dito","69":"Cancelamento dos dados do rateio","73":"Confirma\u00e7\u00e3o Receb. Pedido de Negativa\u00e7\u00e3o","74":"Confir Pedido de Excl de Negat (com ou sem baixa)","02":"Entrada Confirmada","03":"Entrada Rejeitada","06":"Liquida\u00e7\u00e3o normal","09":"Baixado Automat. via Arquivo"})
+	 * @list("json/tpMovimentacao.json")
 	 * @var string
 	 */
 	protected $tpMovimentacao;
@@ -227,7 +227,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 
 	/**
 	 * @field(name=origemPagamento, description=Origem Pagamento, type=string)
-	 * @list({"10":"TER. GER. CBCA SENHAS","13":"FONE F\u00c1CIL","14":"INTERNET","24":"TERM. MULTI FUN\u00c7\u00c3O","27":"PAG CONTAS","35":"NET EMPRESA","52":"SHOP CREDIT","67":"DEB AUTOM\u00c1TICO","73":"PAG FOR","74":"BOCA DO CAIXA","75":"RETAGUARDA","76":"SUBCENTRO","77":"CARTAO DE CR\u00c9DITO","78":"COMPENSA\u00c7\u00c3O ELETR\u00d4NICA","82":"BRADESCO EXPRESSO","01":"CICS (AT00)","07":"TERM. GER. CBCA PF8","02":"BDN MULTI SAQUE"})
+	 * @list("json/origemPagamento.json")
 	 *
 	 * @var string
 	 */
