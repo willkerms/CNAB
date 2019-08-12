@@ -4,7 +4,7 @@ namespace CNAB;
 use PQD\PQDUtil;
 
 /**
- * Classe para geração de CNAB Bancário
+ * Classe para geraï¿½ï¿½o de CNAB Bancï¿½rio
  *
  * @author Willker Moraes Silva
  * @since 2016-07-21
@@ -12,7 +12,7 @@ use PQD\PQDUtil;
 class CNABUtil {
 
 	/**
-	 * Retorna uma data no padrão cnab ddmmaa
+	 * Retorna uma data no padrï¿½o cnab ddmmaa
 	 *
 	 * @param string $date
 	 * @return string
@@ -25,7 +25,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retorna um valor no padrão cnab
+	 * Retorna um valor no padrï¿½o cnab
 	 *
 	 * @param number $value
 	 * @return string
@@ -68,10 +68,12 @@ class CNABUtil {
 	 * @param string $value
 	 * @return string
 	 */
-	public static function retDateUS($date){
+	public static function retDateUS($date, $format = 'dmy'){
 
-		if(!empty($date) && $date != '000000'){
-			$date = \DateTime::createFromFormat('dmy', $date);
+		$repeat = str_repeat('0', strlen(date($format)));
+
+		if(!empty($date) && $date != $repeat){
+			$date = \DateTime::createFromFormat($format, $date);
 
 			if($date instanceof \DateTime)
 				return $date->format('Y-m-d');
@@ -91,7 +93,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retira espaços e zeros
+	 * Retira espaï¿½os e zeros
 	 *
 	 * @param string $value
 	 * @return string
@@ -111,7 +113,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retorna somente os números contidos em uma string
+	 * Retorna somente os nï¿½meros contidos em uma string
 	 *
 	 * @param string $string
 	 * @return mixed
