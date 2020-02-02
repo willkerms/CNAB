@@ -21,7 +21,7 @@ class CNABSicoobNetSupremaREM400 extends CNABSicoobNetSuprema {
 		$this->addField("1", 1); //2
 		$this->addField("REMESSA", 7, ' ', STR_PAD_RIGHT); //3
 		$this->addField("1", 2, '0'); //4
-		$this->addField("COBRANÇA", 8, ' ', STR_PAD_RIGHT); //5
+		$this->addField("COBRANÃA", 8, ' ', STR_PAD_RIGHT); //5
 		$this->addField("", 7); //6
 		$this->addField($this->getAgencia(), 4); //7
 		$this->addField($this->getVerificadorAgencia(), 1); //8
@@ -47,7 +47,7 @@ class CNABSicoobNetSupremaREM400 extends CNABSicoobNetSuprema {
 
 		for($num=0; $num <= strlen($sequencia); $num++) {
 			$cont++;
-			if($cont == 1){ // constante fixa Sicoob » 3197
+			if($cont == 1){ // constante fixa Sicoob Â» 3197
 				$constante = 3;
 			}
 
@@ -107,7 +107,7 @@ class CNABSicoobNetSupremaREM400 extends CNABSicoobNetSuprema {
 		$this->addField($oTitulo->getGrupoValor(), 2, "0");//12
 		$this->addField("", 3);//13
 
-		//Verificar com joão paulo
+		//Verificar com joÃ£o paulo
 		$this->addField($oTitulo->getIndicativoMensagem(), 1);//14
 		$this->addField("", 3);//15
 		$this->addField($oTitulo->getVariacaoCarteira(), 3, "0");//16

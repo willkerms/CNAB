@@ -139,7 +139,7 @@ class CNABBradescoRET400 extends CNABBradesco {
 		if (is_null($this->getConvenio()))
 			$this->setConvenio(CNABUtil::retiraZeros(substr($file[0], 26, 20)));
 		else if(CNABUtil::retiraZeros(substr($file[0], 26, 20)) != $this->getConvenio())
-			throw new \Exception("CÛdigo d· empresa diferente do Arquivo!");
+			throw new \Exception("C√≥digo d√° empresa diferente do Arquivo!");
 
 		$this->setDtaGravacao(substr($file[0], 94, 6));
 		$this->setNAvisoBancario(substr($file[0], 108, 5));
@@ -230,23 +230,23 @@ class CNABBradescoRET400 extends CNABBradesco {
 	private function verifyReg($reg, $row){
 
 		if (!is_null($this->getCpfCnpj()) && $this->getCpfCnpj() != CNABUtil::onlyNumbers(substr($reg, 3, 14)))
-			throw new \Exception("InscriÁ„o d· empresa inv·lida (CPF/CNPJ), linha: $row!");
+			throw new \Exception("Inscri√ß√£o d√° empresa inv√°lida (CPF/CNPJ), linha: $row!");
 	}
 
 	private function verifySequence($reg, $row){
 		if ($row != CNABUtil::retiraZeros(substr($reg, 394, 6)))
-			throw new \Exception("Sequencial do arquivo inv·lido, linha: $row!");
+			throw new \Exception("Sequencial do arquivo inv√°lido, linha: $row!");
 
 		if (strlen(trim($reg)) != 400)
-			throw new \Exception("Linha Inv·lida: $row!");
+			throw new \Exception("Linha Inv√°lida: $row!");
 	}
 
 	private function verifyFile(array $file){
 		if (count($file) < 2)
-			throw new \Exception("Arquivo inv·lido!");
+			throw new \Exception("Arquivo inv√°lido!");
 
-		if(str_replace('«', 'C', substr($file[0], 0, 19)) != '02RETORNO01COBRANCA')
-			throw new \Exception("Arquivo inv·lido!");
+		if(str_replace('√á', 'C', substr($file[0], 0, 19)) != '02RETORNO01COBRANCA')
+			throw new \Exception("Arquivo inv√°lido!");
 
 		if(substr($file[0], 76, 3) != '237')
 			throw new \Exception("Arquivo de retorno de outro Banco!");

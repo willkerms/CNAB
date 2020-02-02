@@ -1,9 +1,9 @@
 <?php
-namespace CNAB\itau;
+namespace CNAB\safra;
 
 use CNAB\CNABUtil;
 
-class CNABItauTituloREM400 extends CNABItauTitulo{
+class CNABSafraTituloREM400 extends CNABSafraTitulo{
 
 	/**
 	 * @var string

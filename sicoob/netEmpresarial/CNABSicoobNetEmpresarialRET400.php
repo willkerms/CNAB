@@ -42,7 +42,7 @@ class CNABSicoobNetEmpresarialRET400 extends CNABSicoobNetEmpresarial {
 		if (is_null($this->getConvenio()))
 			$this->setConvenio(CNABUtil::retiraZeros(substr($file[0], 31, 9)));
 		else if(CNABUtil::retiraZeros(substr($file[0], 31, 9)) != $this->getConvenio())
-			throw new \Exception("Código dá empresa diferente do Arquivo!");
+			throw new \Exception("CÃ³digo dÃ¡ empresa diferente do Arquivo!");
 
 		$this->setDtaGravacao(substr($file[0], 94, 6));
 		$this->setNAvisoBancario(substr($file[0], 100, 7));
@@ -84,7 +84,7 @@ class CNABSicoobNetEmpresarialRET400 extends CNABSicoobNetEmpresarial {
 
 		$aReg = array();
 
-		//O número no final identifica a sequencia do campo de acordo com o documento: Layot Arquivo Retorno CNAB400 2012-06-04.pdf
+		//O nÃºmero no final identifica a sequencia do campo de acordo com o documento: Layot Arquivo Retorno CNAB400 2012-06-04.pdf
 		$aReg['idfRegistro'] 	= substr($reg, 0, 1);//1
 		$aReg['tpInscEmpresa'] 	= substr($reg, 1, 2);//2
 		$aReg['inscEmpresa'] 	= substr($reg, 3, 14);//3
@@ -144,23 +144,23 @@ class CNABSicoobNetEmpresarialRET400 extends CNABSicoobNetEmpresarial {
 	private function verifyReg($reg, $row){
 
 		if (!is_null($this->getCpfCnpj()) && $this->getCpfCnpj() != CNABUtil::onlyNumbers(substr($reg, 3, 14)))
-			throw new \Exception("Inscrição dá empresa inválida (CPF/CNPJ), linha: $row!");
+			throw new \Exception("InscriÃ§Ã£o dÃ¡ empresa invÃ¡lida (CPF/CNPJ), linha: $row!");
 	}
 
 	private function verifySequence($reg, $row){
 		if ($row != CNABUtil::retiraZeros(substr($reg, 394, 6)))
-			throw new \Exception("Sequencial do arquivo inválido, linha: $row!");
+			throw new \Exception("Sequencial do arquivo invÃ¡lido, linha: $row!");
 
 		if (strlen(trim($reg)) != 400)
-			throw new \Exception("Linha Inválida: $row!");
+			throw new \Exception("Linha InvÃ¡lida: $row!");
 	}
 
 	private function verifyFile(array $file){
 		if (count($file) < 2)
-			throw new \Exception("Arquivo inválido!");
+			throw new \Exception("Arquivo invÃ¡lido!");
 
 		if(substr($file[0], 0, 17) != '02RETORNO01COBRAN')
-			throw new \Exception("Arquivo inválido!");
+			throw new \Exception("Arquivo invÃ¡lido!");
 
 		if(substr($file[0], 76, 3) != '756')
 			throw new \Exception("Arquivo de retorno de outro Banco!");

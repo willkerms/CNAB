@@ -1,5 +1,5 @@
 <?php
-namespace CNAB\bradesco;
+namespace CNAB\safra;
 
 use PQD\PQDEntity;
 use CNAB\CNABUtil;
@@ -10,7 +10,7 @@ use PQD\PQDAnnotation;
  *
  * @author Willker Moraes Silva
  */
-class CNABBradescoREGTrans extends PQDEntity{
+class CNABSafraREGTrans extends PQDEntity{
 
 	/**
 	 * @field(name=idfRegistro, description=Identificação do Registro, type=int)

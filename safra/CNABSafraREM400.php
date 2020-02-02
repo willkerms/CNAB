@@ -1,13 +1,13 @@
 <?php
-namespace CNAB\bradesco;
+namespace CNAB\safra;
 
 use CNAB\CNAB;
 use CNAB\CNABUtil;
 
-class CNABBradescoREM400 extends CNABBradesco {
+class CNABSafraREM400 extends CNABSafra {
 
-	public function __construct	($tpBeneficiario, $cpfCnpjBeneficiario, $agencia, $verificadorAgencia, $conta, $verificadorConta, $carteira, $convenio, $beneficiario, $codRemessa, $gravacaoRemessa = ""){
-		parent::__construct($tpBeneficiario, $cpfCnpjBeneficiario, $agencia, $verificadorAgencia, $conta, $verificadorConta, $carteira, $convenio);
+	public function __construct	($tpBeneficiario, $cpfCnpjBeneficiario, $agencia, $verificadorAgencia, $conta, $verificadorConta, $beneficiario, $gravacaoRemessa = ""){
+		parent::__construct($tpBeneficiario, $cpfCnpjBeneficiario, $agencia, $verificadorAgencia, $conta, $verificadorConta);
 
 		$gravacaoRemessa = empty($gravacaoRemessa) ? date('dmy'): $gravacaoRemessa;
 
@@ -16,21 +16,24 @@ class CNABBradescoREM400 extends CNABBradesco {
 		$this->addField("REMESSA", 7, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Operação: "REMESSA"
 		$this->addField("1", 2, '0'); //Identificação do Tipo de Serviço: 01 (um)
 		$this->addField("COBRANCA", 15, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Serviço: COBRANÇA
-		$this->addField($convenio, 20, '0');//ACESSORIO ESCRITURAL
+		$this->addField($agencia, 4, '0');
+		$this->addField("", 2, '0');//zeros
+		$this->addField($conta, 5, '0');//Conta
+		$this->addField($verificadorConta, 1, '0');//DAC - DÍGITO DE AUTO CONFERÊNCIA AG/CONTA EMPRESA
+		$this->addField("", 8); //Complemento do Registro
 		$this->addField(strtoupper($beneficiario), 30, ' ', STR_PAD_RIGHT); //Nome do Beneficiário
-		$this->addField("237BRADESCO", 18, " ", STR_PAD_RIGHT); //Identificação do Banco: "237BRADESCO"
+		$this->addField("341BANCO ITAU SA", 18, " ", STR_PAD_RIGHT); //Identificação do Banco: "237BRADESCO"
 		$this->addField($gravacaoRemessa, 6); //Data da Gravação da Remessa: formato DDMMAA
-		$this->addField("", 8);
-		$this->addField("MX", 2);
-		$this->addField($codRemessa, 7, '0'); //Seqüencial da Remessa: número seqüencial acrescido de 1 a cada remessa. Inicia com "0000001"
-		$this->addField("", 277); //Complemento do Registro: Preencher com espaços em branco
+		$this->addField("", 294); //Complemento do Registro: Preencher com espaços em branco
 		$this->addField($this->sequencial++, 6, '0'); //Sequencial do Registro:000001
 		$this->addField("\r\n", 2);
 	}
 
-	public function addTitulo(CNABBradescoTituloREM400 $oTitulo){
+	public function addTitulo(CNABSafraTituloREM400 $oTitulo){
 
-		$this->addField("1", 1); //1		001		001		001	9(01)	Identificação do Registro Detalhe: 1 (um)
+		$this->addField("1", 1); //IDENTIFICAÇÃO DO REGISTRO TRANSAÇÃO
+		$this->addField("1", 1); //TIPO DE INSCRIÇÃO DA EMPRESA
+		$this->addField("1", 1); //Nº DE INSCRIÇÃO DA EMPRESA (CPF/CNPJ)
 		$this->addField("", 5);//Agência de Débito (opcional)
 		$this->addField("", 1);//Dígito da Agência de Débito (opcional)
 		$this->addField("", 5);//Razão da Conta Corrente (opcional)

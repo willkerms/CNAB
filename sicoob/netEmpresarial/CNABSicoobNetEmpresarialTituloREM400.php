@@ -81,11 +81,11 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	private $emissao;
 
 	/**
-	 * Primeira instrução codificada:
-	 * Regras de impressão de mensagens nos boletos:
-	 * - Primeira instrução (SEQ 34) = 00 e segunda (SEQ 35) = 00, não imprime nada.
-	 * - Primeira instrução (SEQ 34) = 01 e segunda (SEQ 35) = 01, desconsidera-se as instruções CNAB e imprime as mensagens relatadas no trailler do arquivo.
-	 * - Primeira e segunda instrução diferente das situações acima, imprimimos o conteúdo CNAB: instrucaoCodificada.json
+	 * Primeira instruÃ§Ã£o codificada:
+	 * Regras de impressÃ£o de mensagens nos boletos:
+	 * - Primeira instruÃ§Ã£o (SEQ 34) = 00 e segunda (SEQ 35) = 00, nÃ£o imprime nada.
+	 * - Primeira instruÃ§Ã£o (SEQ 34) = 01 e segunda (SEQ 35) = 01, desconsidera-se as instruÃ§Ãµes CNAB e imprime as mensagens relatadas no trailler do arquivo.
+	 * - Primeira e segunda instruÃ§Ã£o diferente das situaÃ§Ãµes acima, imprimimos o conteÃºdo CNAB: instrucaoCodificada.json
 	 * @var string
 	 */
 	private $priInstrucaoCodificada = "";

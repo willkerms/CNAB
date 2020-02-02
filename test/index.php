@@ -11,7 +11,8 @@ $aTests = array(
 	's' => 'SICOOB',
 	'b' => 'Bradesco',
 	'bb' => 'Banco do Brasil',
-	'i' => 'Itau'
+	'i' => 'Itau',
+	'sa' => 'Safra'
 );
 
 $choice = PQDUtil::choiceCLI("Qual API deseja testar?", $aTests);

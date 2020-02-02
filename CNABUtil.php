@@ -4,7 +4,7 @@ namespace CNAB;
 use PQD\PQDUtil;
 
 /**
- * Classe para gera��o de CNAB Banc�rio
+ * Classe para geraï¿½ï¿½o de CNAB Bancï¿½rio
  *
  * @author Willker Moraes Silva
  * @since 2016-07-21
@@ -12,7 +12,7 @@ use PQD\PQDUtil;
 class CNABUtil {
 
 	/**
-	 * Retorna uma data no padr�o cnab ddmmaa
+	 * Retorna uma data no padrï¿½o cnab ddmmaa
 	 *
 	 * @param string $date
 	 * @return string
@@ -25,7 +25,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retorna um valor no padr�o cnab
+	 * Retorna um valor no padrï¿½o cnab
 	 *
 	 * @param number $value
 	 * @return string
@@ -93,7 +93,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retira espa�os e zeros
+	 * Retira espaï¿½os e zeros
 	 *
 	 * @param string $value
 	 * @return string
@@ -113,7 +113,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retorna somente os n�meros contidos em uma string
+	 * Retorna somente os nï¿½meros contidos em uma string
 	 *
 	 * @param string $string
 	 * @return mixed

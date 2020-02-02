@@ -11,34 +11,34 @@ class CNABItauREM400 extends CNABItau {
 
 		$gravacaoRemessa = empty($gravacaoRemessa) ? date('dmy'): $gravacaoRemessa;
 
-		$this->addField("0", 1); //Identificação do Registro Header: “0” (zero)
-		$this->addField("1", 1); //Tipo de Operação: “1” (um)
-		$this->addField("REMESSA", 7, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Operação: "REMESSA"
-		$this->addField("1", 2, '0'); //Identificação do Tipo de Serviço: “01” (um)
-		$this->addField("COBRANCA", 15, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Serviço: “COBRANÇA”
+		$this->addField("0", 1); //IdentificaÃ§Ã£o do Registro Header: Â“0Â” (zero)
+		$this->addField("1", 1); //Tipo de OperaÃ§Ã£o: Â“1Â” (um)
+		$this->addField("REMESSA", 7, ' ', STR_PAD_RIGHT); //IdentificaÃ§Ã£o por Extenso do Tipo de OperaÃ§Ã£o: "REMESSA"
+		$this->addField("1", 2, '0'); //IdentificaÃ§Ã£o do Tipo de ServiÃ§o: Â“01Â” (um)
+		$this->addField("COBRANCA", 15, ' ', STR_PAD_RIGHT); //IdentificaÃ§Ã£o por Extenso do Tipo de ServiÃ§o: Â“COBRANÃ‡AÂ”
 		$this->addField($agencia, 4, '0');
 		$this->addField("", 2, '0');//zeros
 		$this->addField($conta, 5, '0');//Conta
-		$this->addField($verificadorConta, 1, '0');//DAC - DÍGITO DE AUTO CONFERÊNCIA AG/CONTA EMPRESA
+		$this->addField($verificadorConta, 1, '0');//DAC - DÃGITO DE AUTO CONFERÃŠNCIA AG/CONTA EMPRESA
 		$this->addField("", 8); //Complemento do Registro
-		$this->addField(strtoupper($beneficiario), 30, ' ', STR_PAD_RIGHT); //Nome do Beneficiário
-		$this->addField("341BANCO ITAU SA", 18, " ", STR_PAD_RIGHT); //Identificação do Banco: "237BRADESCO"
-		$this->addField($gravacaoRemessa, 6); //Data da Gravação da Remessa: formato DDMMAA
-		$this->addField("", 294); //Complemento do Registro: Preencher com espaços em branco
-		$this->addField($this->sequencial++, 6, '0'); //Sequencial do Registro:”000001”
+		$this->addField(strtoupper($beneficiario), 30, ' ', STR_PAD_RIGHT); //Nome do BeneficiÃ¡rio
+		$this->addField("341BANCO ITAU SA", 18, " ", STR_PAD_RIGHT); //IdentificaÃ§Ã£o do Banco: "237BRADESCO"
+		$this->addField($gravacaoRemessa, 6); //Data da GravaÃ§Ã£o da Remessa: formato DDMMAA
+		$this->addField("", 294); //Complemento do Registro: Preencher com espaÃ§os em branco
+		$this->addField($this->sequencial++, 6, '0'); //Sequencial do Registro:Â”000001Â”
 		$this->addField("\r\n", 2);
 	}
 
 	public function addTitulo(CNABItauTituloREM400 $oTitulo){
 
-		$this->addField("1", 1); //IDENTIFICAÇÃO DO REGISTRO TRANSAÇÃO
-		$this->addField("1", 1); //TIPO DE INSCRIÇÃO DA EMPRESA
-		$this->addField("1", 1); //Nº DE INSCRIÇÃO DA EMPRESA (CPF/CNPJ)
-		$this->addField("", 5);//Agência de Débito (opcional)
-		$this->addField("", 1);//Dígito da Agência de Débito (opcional)
-		$this->addField("", 5);//Razão da Conta Corrente (opcional)
+		$this->addField("1", 1); //IDENTIFICAÃ‡ÃƒO DO REGISTRO TRANSAÃ‡ÃƒO
+		$this->addField("1", 1); //TIPO DE INSCRIÃ‡ÃƒO DA EMPRESA
+		$this->addField("1", 1); //NÂº DE INSCRIÃ‡ÃƒO DA EMPRESA (CPF/CNPJ)
+		$this->addField("", 5);//AgÃªncia de DÃ©bito (opcional)
+		$this->addField("", 1);//DÃ­gito da AgÃªncia de DÃ©bito (opcional)
+		$this->addField("", 5);//RazÃ£o da Conta Corrente (opcional)
 		$this->addField("", 7);//Conta Corrente (opcional)
-		$this->addField("", 1);//Dígito da Conta Corrente (opcional)
+		$this->addField("", 1);//DÃ­gito da Conta Corrente (opcional)
 
 		$this->addField('0');//ZERO
 		$this->addField($this->getCarteira(), 3, 0);//Carteira
@@ -46,61 +46,61 @@ class CNABItauREM400 extends CNABItau {
 		$this->addField($this->getConta(), 7, 0);//Conta
 		$this->addField($this->getVerificadorConta());//Verificador
 
-		$this->addField($oTitulo->getSeuNumero(), 25, 0);//Nº Controle do Participante - Uso da Empresa
-		$this->addField("237", 3);//Código do Banco a ser debitado na Câmara de Compensação - Nº do Banco “237”
+		$this->addField($oTitulo->getSeuNumero(), 25, 0);//NÂº Controle do Participante - Uso da Empresa
+		$this->addField("237", 3);//CÃ³digo do Banco a ser debitado na CÃ¢mara de CompensaÃ§Ã£o - NÂº do Banco Â“237Â”
 		$this->addField($oTitulo->getMulta(), 1);//Campo de Multa - Se = 2 considerar percentual de multa. Se = 0, sem multa. Vide Obs
 		$this->addField($oTitulo->getMultaVlr(), 4, 0);//Percentual de multa - Percentual de multa a ser considerado
 		if(($oTitulo->getCondEmissaoCobrancao() == 1 && !is_null($oTitulo->getNossoNumero())) || $oTitulo->getCondEmissaoCobrancao() == 2)
-			$this->addField($this->retNossoNumeroOBJ($oTitulo->getNossoNumero()), 12);//Identificação do Título no Banco - Número Bancário para Cobrança Com e Sem Registro Vide
+			$this->addField($this->retNossoNumeroOBJ($oTitulo->getNossoNumero()), 12);//IdentificaÃ§Ã£o do TÃ­tulo no Banco - NÃºmero BancÃ¡rio para CobranÃ§a Com e Sem Registro Vide
 		else
-			$this->addField($oTitulo->getNossoNumero(), 12, 0);//Identificação do Título no Banco - Número Bancário para Cobrança Com e Sem Registro Vide
-		//$this->addField($oTitulo->getNossoNumero(), 11);//Identificação do Título no Banco - Número Bancário para Cobrança Com e Sem Registro Vide
-		//$this->addField("", 1);//Digito de Auto Conferencia do Número Bancário. - Digito N/N
-		$this->addField($oTitulo->getDesconto(), 10, 0);//Desconto Bonificação por dia - Valor do desconto bonif./dia
-		$this->addField($oTitulo->getCondEmissaoCobrancao(), 1);//Condição para Emissão da Papeleta de Cobrança - 1 = Banco emite e Processa o registro. 2 = Cliente emite e o Banco somente processa o registro
-		$this->addField($oTitulo->getIdenEmiteBoletoDebAut(), 1);//Ident. se emite Boleto para Débito Automático - N= Não registra na cobrança. Diferente de N registra e emite Boleto.
-		$this->addField("", 10);//Identificação da Operação do Banco
-		$this->addField("R", 1);//Indicador Rateio Crédito (opcional)
-		$this->addField("", 1);//Endereçamento para Aviso do Débito Automático em Conta Corrente (opcional)
+			$this->addField($oTitulo->getNossoNumero(), 12, 0);//IdentificaÃ§Ã£o do TÃ­tulo no Banco - NÃºmero BancÃ¡rio para CobranÃ§a Com e Sem Registro Vide
+		//$this->addField($oTitulo->getNossoNumero(), 11);//IdentificaÃ§Ã£o do TÃ­tulo no Banco - NÃºmero BancÃ¡rio para CobranÃ§a Com e Sem Registro Vide
+		//$this->addField("", 1);//Digito de Auto Conferencia do NÃºmero BancÃ¡rio. - Digito N/N
+		$this->addField($oTitulo->getDesconto(), 10, 0);//Desconto BonificaÃ§Ã£o por dia - Valor do desconto bonif./dia
+		$this->addField($oTitulo->getCondEmissaoCobrancao(), 1);//CondiÃ§Ã£o para EmissÃ£o da Papeleta de CobranÃ§a - 1 = Banco emite e Processa o registro. 2 = Cliente emite e o Banco somente processa o registro
+		$this->addField($oTitulo->getIdenEmiteBoletoDebAut(), 1);//Ident. se emite Boleto para DÃ©bito AutomÃ¡tico - N= NÃ£o registra na cobranÃ§a. Diferente de N registra e emite Boleto.
+		$this->addField("", 10);//IdentificaÃ§Ã£o da OperaÃ§Ã£o do Banco
+		$this->addField("R", 1);//Indicador Rateio CrÃ©dito (opcional)
+		$this->addField("", 1);//EndereÃ§amento para Aviso do DÃ©bito AutomÃ¡tico em Conta Corrente (opcional)
 		$this->addField("", 2);//BRANCO
-		$this->addField($oTitulo->getIdfOcorrencia(), 2);//Códigos de ocorrência
-		$this->addField($oTitulo->getDocumento(), 10);//Nº do Documento - DOCUMENTO
-		$this->addField($oTitulo->getVencimento(), 6);//Data do Vencimento do Título
-		$this->addField($oTitulo->getValor(), 13, 0);//Valor do Título (preencher sem ponto e sem vírgula)
-		$this->addField("000", 3, '0');//Banco Encarregado da Cobrança - Preencher com zeros
-		$this->addField("00000", 5, '0');//Agência Depositária - Preencher com zeros
-		$this->addField($oTitulo->getEspecie(), 2);//Espécie de Título ->
+		$this->addField($oTitulo->getIdfOcorrencia(), 2);//CÃ³digos de ocorrÃªncia
+		$this->addField($oTitulo->getDocumento(), 10);//NÂº do Documento - DOCUMENTO
+		$this->addField($oTitulo->getVencimento(), 6);//Data do Vencimento do TÃ­tulo
+		$this->addField($oTitulo->getValor(), 13, 0);//Valor do TÃ­tulo (preencher sem ponto e sem vÃ­rgula)
+		$this->addField("000", 3, '0');//Banco Encarregado da CobranÃ§a - Preencher com zeros
+		$this->addField("00000", 5, '0');//AgÃªncia DepositÃ¡ria - Preencher com zeros
+		$this->addField($oTitulo->getEspecie(), 2);//EspÃ©cie de TÃ­tulo ->
 													//01-Duplicata
-													//02-Nota Promissória
+													//02-Nota PromissÃ³ria
 													//03-Nota de Seguro
-													//04-Cobrança Seriada
+													//04-CobranÃ§a Seriada
 													//05-Recibo
-													//10-Letras de Câmbio
-													//11-Nota de Débito
+													//10-Letras de CÃ¢mbio
+													//11-Nota de DÃ©bito
 													//12-Duplicata de Serv.
 													//30-Boleto de Proposta
 													//99-Outros
-		$this->addField("N", 1);//Identificação - Sempre = N
-		$this->addField($oTitulo->getEmissao(), 6);//Data da emissão do Título
-		$this->addField($oTitulo->getPrimInstrucao(), 2, '0');//1ª instrução
-		$this->addField($oTitulo->getSegInstrucao(), 2, '0');//2ª instrução
+		$this->addField("N", 1);//IdentificaÃ§Ã£o - Sempre = N
+		$this->addField($oTitulo->getEmissao(), 6);//Data da emissÃ£o do TÃ­tulo
+		$this->addField($oTitulo->getPrimInstrucao(), 2, '0');//1Âª instruÃ§Ã£o
+		$this->addField($oTitulo->getSegInstrucao(), 2, '0');//2Âª instruÃ§Ã£o
 		$this->addField($oTitulo->getMora(), 13, '0');//Valor a ser cobrado por Dia de Atraso - //Mora por Dia de Atraso
-		$this->addField($oTitulo->getDtaLimitDesc(), 6);//Data Limite P/Concessão de Desconto
+		$this->addField($oTitulo->getDtaLimitDesc(), 6);//Data Limite P/ConcessÃ£o de Desconto
 		$this->addField($oTitulo->getDesconto(), 13, '0');//Valor do Desconto
 		$this->addField($oTitulo->getVlrIOF(), 13, '0');//Valor do IOF
 		$this->addField($oTitulo->getVlrAbatimento(), 13, '0');//Valor do Abatimento a ser concedido ou cancelado
-		$this->addField($oTitulo->getTpPagador(), 2);//Identificação do Tipo de Inscrição do Pagador ->
+		$this->addField($oTitulo->getTpPagador(), 2);//IdentificaÃ§Ã£o do Tipo de InscriÃ§Ã£o do Pagador ->
 																				//01-CPF
 																				//02-CNPJ
 																				//03-PIS/PASEP
-																				//98-Não tem
+																				//98-NÃ£o tem
 																				//99-Outros
-		$this->addField($oTitulo->getPagadorCpfCnpj(), 14, '0');//Nº Inscrição do Pagador
+		$this->addField($oTitulo->getPagadorCpfCnpj(), 14, '0');//NÂº InscriÃ§Ã£o do Pagador
 		$this->addField($oTitulo->getPagador(), 40, ' ', STR_PAD_RIGHT);//Nome do Pagador
-		$this->addField($oTitulo->getPagadorEndereco(), 40, ' ', STR_PAD_RIGHT);//Endereço Completo
-		$this->addField($oTitulo->getPriMensagem(), 12);//1ª Mensagem
+		$this->addField($oTitulo->getPagadorEndereco(), 40, ' ', STR_PAD_RIGHT);//EndereÃ§o Completo
+		$this->addField($oTitulo->getPriMensagem(), 12);//1Âª Mensagem
 		$this->addField($oTitulo->getPagadorCep(), 8);//CEP
-		$this->addField($oTitulo->getSegMensagem(), 60);//Sacador/Avalista ou 2ª Mensagem
+		$this->addField($oTitulo->getSegMensagem(), 60);//Sacador/Avalista ou 2Âª Mensagem
 		$this->addField($this->sequencial++, 6, "0");
 		$this->addField("\r\n", 2);
 	}

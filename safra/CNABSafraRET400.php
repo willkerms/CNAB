@@ -1,5 +1,5 @@
 <?php
-namespace CNAB\itau;
+namespace CNAB\safra;
 
 use CNAB\CNAB;
 use CNAB\CNABUtil;
@@ -10,7 +10,7 @@ use CNAB\CNABUtil;
  * @author Willker Moraes Silva
  * @since 2016-09-21
  */
-class CNABItauRET400 extends CNABItau {
+class CNABSafraRET400 extends CNABSafra {
 
 	/**
 	 * @var string

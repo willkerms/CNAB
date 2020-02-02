@@ -2,7 +2,7 @@
 namespace CNAB;
 
 /**
- * Classe para geraÁ„o de CNAB Banc·rio
+ * Classe para gera√ß√£o de CNAB Banc√°rio
  *
  * @author Willker Moraes Silva
  * @since 2016-07-20
