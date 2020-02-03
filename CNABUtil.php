@@ -4,7 +4,7 @@ namespace CNAB;
 use PQD\PQDUtil;
 
 /**
- * Classe para geraï¿½ï¿½o de CNAB Bancï¿½rio
+ * Classe para geração de CNAB Bancário
  *
  * @author Willker Moraes Silva
  * @since 2016-07-21
@@ -12,20 +12,20 @@ use PQD\PQDUtil;
 class CNABUtil {
 
 	/**
-	 * Retorna uma data no padrï¿½o cnab ddmmaa
+	 * Retorna uma data no padrão cnab ddmmaa
 	 *
 	 * @param string $date
 	 * @return string
 	 */
-	public static function retDate($date){
+	public static function retDate($date, $format = 'dmy'){
 		if(!empty($date))
-			return date('dmy', strtotime($date));
+			return date($format, strtotime($date));
 		else
 			return $date;
 	}
 
 	/**
-	 * Retorna um valor no padrï¿½o cnab
+	 * Retorna um valor no padrão cnab
 	 *
 	 * @param number $value
 	 * @return string
@@ -93,7 +93,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retira espaï¿½os e zeros
+	 * Retira espaços e zeros
 	 *
 	 * @param string $value
 	 * @return string
@@ -113,7 +113,7 @@ class CNABUtil {
 	}
 
 	/**
-	 * Retorna somente os nï¿½meros contidos em uma string
+	 * Retorna somente os números contidos em uma string
 	 *
 	 * @param string $string
 	 * @return mixed

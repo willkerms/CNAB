@@ -3,7 +3,7 @@ namespace CNAB\sicoob\netSuprema;
 
 use CNAB\CNAB;
 use CNAB\CNABUtil;
-use CNAB\sicoob\netEmpresarial\CNABSicoobNetEmpresarialTituloREM400;
+use CNAB\sicoob\netSuprema\CNABSicoobNetEmpresarialTituloREM400;
 
 class CNABSicoobNetSupremaREM400 extends CNABSicoobNetSuprema {
 
@@ -89,7 +89,7 @@ class CNABSicoobNetSupremaREM400 extends CNABSicoobNetSuprema {
 		return self::retNossoNumero($NossoNumero, $this->getAgencia(), $this->getConvenio());
 	}
 
-	public function addTitulo(CNABSicoobNetEmpresarialTituloREM400 $oTitulo, $calcNossoNumero = true){
+	public function addTitulo(CNABSicoobNetSupremaTituloREM400 $oTitulo, $calcNossoNumero = true){
 
 		//docs/sicoob/netsuprema/Layot Arquivo Remessa CNAB400 Febraban - Net Suprema.pdf
 		//DETALHE

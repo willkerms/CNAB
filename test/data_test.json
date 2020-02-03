@@ -1,8 +1,8 @@
 {
 	"empresa" : {
 		"nome" : "EMPRESA TESTE LTDA",
-		"cnpj" : "34776311000169",
-		"agencia" : "12345",
+		"cnpj" : "12345678901234",
+		"agencia" : "0001",
 		"conta" : "12345",
 		"carteira" : "01",
 		"convenio" : "12345"

@@ -3,12 +3,17 @@ namespace CNAB\sicoob\netEmpresarial;
 
 use CNAB\CNABUtil;
 
-class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitulo{
+class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitulo{
 
 	/**
 	 * @var string
 	 */
 	private $nossoNumero;
+
+	/**
+	 * @var string
+	 */
+	private $nossoNumeroBcoCorresp;
 
 	/**
 	 * @var string
@@ -68,12 +73,12 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	/**
 	 * @var string
 	 */
-	private $especieTitulo = "1";
+	private $especieTitulo = "2";
 
 	/**
 	 * @var string
 	 */
-	private $aceite = "1";
+	private $aceite = "N";
 
 	/**
 	 * @var string
@@ -81,24 +86,14 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	private $emissao;
 
 	/**
-	 * Primeira instruÃ§Ã£o codificada:
-	 * Regras de impressÃ£o de mensagens nos boletos:
-	 * - Primeira instruÃ§Ã£o (SEQ 34) = 00 e segunda (SEQ 35) = 00, nÃ£o imprime nada.
-	 * - Primeira instruÃ§Ã£o (SEQ 34) = 01 e segunda (SEQ 35) = 01, desconsidera-se as instruÃ§Ãµes CNAB e imprime as mensagens relatadas no trailler do arquivo.
-	 * - Primeira e segunda instruÃ§Ã£o diferente das situaÃ§Ãµes acima, imprimimos o conteÃºdo CNAB: instrucaoCodificada.json
-	 * @var string
+	 * @var number
 	 */
-	private $priInstrucaoCodificada = "";
-
-	/**
-	 * @var string
-	 */
-	private $segInstrucaoCodificada = "";
+	private $tpJuros = '0';//Isento
 
 	/**
 	 * @var number
 	 */
-	private $mora = 0.0;
+	private $juros = 0.0;
 
 	/**
 	 * @var number
@@ -109,6 +104,14 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 * @var string
 	 */
 	private $distribuicao = "2";
+
+	/**
+	 * 0 - Não conceder desconto
+	 * 1 - Valor Fixo
+	 * 2 - Valor Percentual
+	 * @var string
+	 */
+	private $tpPrimDesconto = "0";
 
 	/**
 	 * @var string
@@ -123,7 +126,7 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	/**
 	 * @var string
 	 */
-	private $moeda = "";
+	private $moeda = "09";
 
 	/**
 	 * @var string
@@ -144,6 +147,21 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 * @var string
 	 */
 	private $pagador;
+
+	/**
+	 * @var string
+	 */
+	private $tpSacAvalista;
+
+	/**
+	 * @var string
+	 */
+	private $sacAvalistaCpfCnpj;
+
+	/**
+	 * @var string
+	 */
+	private $sacAvalista;
 
 	/**
 	 * @var string
@@ -190,6 +208,13 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function getNossoNumero() {
 		return $this->nossoNumero;
+	}
+
+	/**
+	 * @return the $nossoNumeroBcoCorresp
+	 */
+	public function getNossoNumeroBcoCorresp() {
+		return $this->nossoNumeroBcoCorresp;
 	}
 
 	/**
@@ -273,7 +298,7 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 * @return the $emissao
 	 */
 	public function getEmissao() {
-		return CNABUtil::retDate($this->emissao);
+		return CNABUtil::retDate($this->emissao, 'dmY');
 	}
 
 	/**
@@ -291,19 +316,24 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	}
 
 	/**
-	 * @return the $mora
+	 * @return the $tpJuros
 	 */
-	public function getMora() {
-		$str = (double)$this->mora < 10 ? "0" . str_replace(".", "", $this->mora) : str_replace(".", "", $this->mora);
-		return str_pad($str, 6, "0", STR_PAD_RIGHT);
+	public function getTpJuros() {
+		return $this->tpJuros;
+	}
+
+	/**
+	 * @return the $juros
+	 */
+	public function getJuros() {
+		return $this->juros;
 	}
 
 	/**
 	 * @return the $multa
 	 */
 	public function getMulta() {
-		$str = (double)$this->multa < 10 ? "0" . str_replace(".", "", $this->multa) : str_replace(".", "", $this->multa);
-		return str_pad($str, 6, "0", STR_PAD_RIGHT);
+		return $this->multa;
 	}
 
 	/**
@@ -314,10 +344,17 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	}
 
 	/**
+	 * @return the $tpPrimDesconto
+	 */
+	public function getTpPrimDesconto() {
+		return $this->tpPrimDesconto;
+	}
+
+	/**
 	 * @return the $dtPrimeiroDesconto
 	 */
 	public function getDtPrimeiroDesconto() {
-		return CNABUtil::retDate($this->dtPrimeiroDesconto);
+		return CNABUtil::retDate($this->dtPrimeiroDesconto, 'dmY');
 	}
 
 	/**
@@ -351,14 +388,14 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 			case "PF":
 			case "F":
 			case "f":
-				return "01";
+				return "1";
 			break;
 
 			case 1:
 			case 'PJ':
 			case 'J':
 			case 'j':
-				return "02";
+				return "2";
 			break;
 
 			default:
@@ -371,6 +408,37 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function getPagador() {
 		return $this->pagador;
+	}
+
+	/**
+	 * @return the $tpSacAvalista
+	 */
+	public function getTpSacAvalista() {
+		switch ($this->tpSacAvalista){
+			case 0:
+			case "PF":
+			case "F":
+			case "f":
+				return "1";
+			break;
+
+			case 1:
+			case 'PJ':
+			case 'J':
+			case 'j':
+				return "2";
+			break;
+
+			default:
+				return $this->tpSacAvalista;
+		}
+	}
+
+	/**
+	 * @return the $sacAvalista
+	 */
+	public function getSacAvalista() {
+		return $this->sacAvalista;
 	}
 
 	/**
@@ -434,6 +502,13 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function setNossoNumero($nossoNumero) {
 		$this->nossoNumero = $nossoNumero;
+	}
+
+	/**
+	 * @param string $nossoNumeroBcoCorresp
+	 */
+	public function setNossoNumeroBcoCorresp($nossoNumeroBcoCorresp) {
+		$this->nossoNumeroBcoCorresp = $nossoNumeroBcoCorresp;
 	}
 
 	/**
@@ -535,10 +610,17 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	}
 
 	/**
-	 * @param string $mora
+	 * @param string $tpJuros
 	 */
-	public function setMora($mora) {
-		$this->mora = $mora;
+	public function setTpJuros($tpJuros) {
+		$this->tpJuros = $tpJuros;
+	}
+
+	/**
+	 * @param string $juros
+	 */
+	public function setJuros($juros) {
+		$this->juros = $juros;
 	}
 
 	/**
@@ -553,6 +635,13 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function setDistribuicao($distribuicao) {
 		$this->distribuicao = $distribuicao;
+	}
+
+	/**
+	 * @param string $tpPrimDesconto
+	 */
+	public function setTpPrimDesconto($tpPrimDesconto) {
+		$this->tpPrimDesconto = $tpPrimDesconto;
 	}
 
 	/**
@@ -595,6 +684,20 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function setPagador($pagador) {
 		$this->pagador = $pagador;
+	}
+
+	/**
+	 * @param string $tpSacAvalista
+	 */
+	public function setTpSacAvalista($tpSacAvalista) {
+		$this->tpSacAvalista = $tpSacAvalista;
+	}
+
+	/**
+	 * @param string $sacAvalista
+	 */
+	public function setSacAvalista($sacAvalista) {
+		$this->sacAvalista = $sacAvalista;
 	}
 
 	/**
@@ -665,6 +768,20 @@ class CNABSicoobNetEmpresarialTituloREM400 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function setPagadorCpfCnpj($pagadorCpfCnpj) {
 		$this->pagadorCpfCnpj = $pagadorCpfCnpj;
+	}
+	
+	/**
+	 * @return the $pagadorCpfCnpj
+	 */
+	public function getSacAvalistaCpfCnpj() {
+		return $this->sacAvalistaCpfCnpj;
+	}
+
+	/**
+	 * @param string $SacAvalistaCpfCnpj
+	 */
+	public function setSacAvalistaCpfCnpj($sacAvalistaCpfCnpj) {
+		$this->sacAvalistaCpfCnpj = $sacAvalistaCpfCnpj;
 	}
 	/**
 	 * @return the $indicativoMensagem

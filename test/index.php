@@ -7,6 +7,10 @@ define("CNAB_DIR", dirname(dirname(__FILE__)) . '/');
 
 define("CNAB_CWD", getcwd() . '/');
 
+define('IS_DEVELOPMENT', true);
+define('APP_DEBUG', true);
+define('APP_DEBUG_CNAB', true);
+
 $aTests = array(
 	's' => 'SICOOB',
 	'b' => 'Bradesco',

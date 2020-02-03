@@ -11,11 +11,11 @@ class CNABSafraREM400 extends CNABSafra {
 
 		$gravacaoRemessa = empty($gravacaoRemessa) ? date('dmy'): $gravacaoRemessa;
 
-		$this->addField("0", 1); //Identificação do Registro Header: 0 (zero)
-		$this->addField("1", 1); //Tipo de Operação: 1 (um)
+		$this->addField("0", 1); //Identificação do Registro Header: "0" (zero)
+		$this->addField("1", 1); //Tipo de Operação: "1" (um)
 		$this->addField("REMESSA", 7, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Operação: "REMESSA"
-		$this->addField("1", 2, '0'); //Identificação do Tipo de Serviço: 01 (um)
-		$this->addField("COBRANCA", 15, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Serviço: COBRANÇA
+		$this->addField("1", 2, '0'); //Identificação do Tipo de Serviço: "01" (um)
+		$this->addField("COBRANCA", 15, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Serviço: "COBRANÇA"
 		$this->addField($agencia, 4, '0');
 		$this->addField("", 2, '0');//zeros
 		$this->addField($conta, 5, '0');//Conta
@@ -25,7 +25,7 @@ class CNABSafraREM400 extends CNABSafra {
 		$this->addField("341BANCO ITAU SA", 18, " ", STR_PAD_RIGHT); //Identificação do Banco: "237BRADESCO"
 		$this->addField($gravacaoRemessa, 6); //Data da Gravação da Remessa: formato DDMMAA
 		$this->addField("", 294); //Complemento do Registro: Preencher com espaços em branco
-		$this->addField($this->sequencial++, 6, '0'); //Sequencial do Registro:000001
+		$this->addField($this->sequencial++, 6, '0'); //Sequencial do Registro:"000001"
 		$this->addField("\r\n", 2);
 	}
 

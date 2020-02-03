@@ -11,11 +11,11 @@ class CNABBradescoREM400 extends CNABBradesco {
 
 		$gravacaoRemessa = empty($gravacaoRemessa) ? date('dmy'): $gravacaoRemessa;
 
-		$this->addField("0", 1); //Identificação do Registro Header: 0 (zero)
-		$this->addField("1", 1); //Tipo de Operação: 1 (um)
+		$this->addField("0", 1); //Identificação do Registro Header: "0" (zero)
+		$this->addField("1", 1); //Tipo de Operação: "1" (um)
 		$this->addField("REMESSA", 7, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Operação: "REMESSA"
-		$this->addField("1", 2, '0'); //Identificação do Tipo de Serviço: 01 (um)
-		$this->addField("COBRANCA", 15, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Serviço: COBRANÇA
+		$this->addField("1", 2, '0'); //Identificação do Tipo de Serviço: "01" (um)
+		$this->addField("COBRANCA", 15, ' ', STR_PAD_RIGHT); //Identificação por Extenso do Tipo de Serviço: "COBRANÇA"
 		$this->addField($convenio, 20, '0');//ACESSORIO ESCRITURAL
 		$this->addField(strtoupper($beneficiario), 30, ' ', STR_PAD_RIGHT); //Nome do Beneficiário
 		$this->addField("237BRADESCO", 18, " ", STR_PAD_RIGHT); //Identificação do Banco: "237BRADESCO"
@@ -24,7 +24,7 @@ class CNABBradescoREM400 extends CNABBradesco {
 		$this->addField("MX", 2);
 		$this->addField($codRemessa, 7, '0'); //Seqüencial da Remessa: número seqüencial acrescido de 1 a cada remessa. Inicia com "0000001"
 		$this->addField("", 277); //Complemento do Registro: Preencher com espaços em branco
-		$this->addField($this->sequencial++, 6, '0'); //Sequencial do Registro:000001
+		$this->addField($this->sequencial++, 6, '0'); //Sequencial do Registro:"000001"
 		$this->addField("\r\n", 2);
 	}
 
@@ -44,7 +44,7 @@ class CNABBradescoREM400 extends CNABBradesco {
 		$this->addField($this->getVerificadorConta());//Verificador
 
 		$this->addField($oTitulo->getSeuNumero(), 25, 0);//Nº Controle do Participante - Uso da Empresa
-		$this->addField("237", 3);//Código do Banco a ser debitado na Câmara de Compensação - Nº do Banco 237
+		$this->addField("237", 3);//Código do Banco a ser debitado na Câmara de Compensação - Nº do Banco "237"
 		$this->addField($oTitulo->getMulta(), 1);//Campo de Multa - Se = 2 considerar percentual de multa. Se = 0, sem multa. Vide Obs
 		$this->addField($oTitulo->getMultaVlr(), 4, 0);//Percentual de multa - Percentual de multa a ser considerado
 		if(($oTitulo->getCondEmissaoCobrancao() == 1 && !is_null($oTitulo->getNossoNumero())) || $oTitulo->getCondEmissaoCobrancao() == 2)

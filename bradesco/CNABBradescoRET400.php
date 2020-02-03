@@ -261,8 +261,8 @@ class CNABBradescoRET400 extends CNABBradesco {
 		for($i=0; $i<strlen($ocorrencias); $i+=2){
 
 			$ocorrencia = substr($ocorrencias, $i, 2);
-			if(isset($aFields['motivoOcorrencia']['list']->{$tipoMovimentacao}) && !isset($aReturn[$ocorrencia]) && isset($aFields['motivoOcorrencia']['list']->{$tipoMovimentacao}->{$ocorrencia}))
-				$aReturn[$ocorrencia] = $aFields['motivoOcorrencia']['list']->{$tipoMovimentacao}->{$ocorrencia};
+			if(isset($aFields['motivoOcorrencia']['list'][$tipoMovimentacao]) && !isset($aReturn[$ocorrencia]) && isset($aFields['motivoOcorrencia']['list'][$tipoMovimentacao][$ocorrencia]))
+				$aReturn[$ocorrencia] = $aFields['motivoOcorrencia']['list'][$tipoMovimentacao][$ocorrencia];
 		}
 
 		return $aReturn;

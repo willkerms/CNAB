@@ -6,6 +6,10 @@ use CNAB\CNAB;
 class CNABSicoobNetEmpresarial extends CNAB{
 
 	protected $sequencial = 1;
+	
+	protected $qtdTitulos = 0;
+
+	protected $totTitulos = 0.0;
 
 	/**
 	 * @var string
@@ -40,14 +44,17 @@ class CNABSicoobNetEmpresarial extends CNAB{
 	/**
 	 * @var string
 	 */
-	private $convenio;
+	private $codCliente;
 
 	/**
 	 * @var string
 	 */
 	private $carteira;
 
-	public function __construct($tpPessoa, $cpfCnpj, $agencia, $verificadorAgencia, $conta, $verificadorConta, $carteira, $convenio){
+	/**
+	 * 
+	 */
+	public function __construct($tpPessoa, $cpfCnpj, $agencia, $verificadorAgencia, $conta, $verificadorConta, $carteira, $codCliente){
 
 		$this->tpPessoa = $tpPessoa;
 
@@ -59,7 +66,7 @@ class CNABSicoobNetEmpresarial extends CNAB{
 		$this->conta = $conta;
 		$this->verificadorConta = $verificadorConta;
 
-		$this->convenio = $convenio;
+		$this->codCliente = $codCliente;
 
 		$this->carteira = $carteira;
 	}
@@ -72,13 +79,13 @@ class CNABSicoobNetEmpresarial extends CNAB{
 			case "PF":
 			case "F":
 			case "f":
-				return "01";
+				return "1";
 			break;
 			case 1:
 			case 'PJ':
 			case 'J':
 			case 'j':
-				return "02";
+				return "2";
 			break;
 
 			default:
@@ -122,10 +129,10 @@ class CNABSicoobNetEmpresarial extends CNAB{
 	}
 
 	/**
-	 * @return string $convenio
+	 * @return string $codCliente
 	 */
-	public function getConvenio() {
-		return $this->convenio;
+	public function getCodCliente() {
+		return $this->codCliente;
 	}
 
 	/**
@@ -178,10 +185,10 @@ class CNABSicoobNetEmpresarial extends CNAB{
 	}
 
 	/**
-	 * @param string $convenio
+	 * @param string $codCliente
 	 */
-	public function setConvenio($convenio) {
-		$this->convenio = $convenio;
+	public function setCodCliente($codCliente) {
+		$this->codCliente = $codCliente;
 	}
 
 	/**

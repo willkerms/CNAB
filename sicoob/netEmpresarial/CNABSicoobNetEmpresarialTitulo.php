@@ -8,12 +8,24 @@ class CNABSicoobNetEmpresarialTitulo{
 	/**
 	 * @var number
 	 */
+	private $iof = 0;
+
+	/**
+	 * @var number
+	 */
 	private $valor;
 
 	/**
 	 * @var string
 	 */
 	private $vencimento;
+
+	/**
+	 * @return string $iof
+	 */
+	public function getIof() {
+		return CNABUtil::onlyNumbers(CNABUtil::retNumber($this->iof));
+	}
 
 	/**
 	 * @return string $valor
@@ -26,7 +38,7 @@ class CNABSicoobNetEmpresarialTitulo{
 	 * @return string $vencimento
 	 */
 	public function getVencimento() {
-		return CNABUtil::retDate($this->vencimento);
+		return CNABUtil::retDate($this->vencimento, 'dmY');
 	}
 
 	/**
@@ -34,6 +46,13 @@ class CNABSicoobNetEmpresarialTitulo{
 	 */
 	public function setValor($valor) {
 		$this->valor = $valor;
+	}
+
+	/**
+	 * @param number $iof
+	 */
+	public function setIof($iof) {
+		$this->iof = $iof;
 	}
 
 	/**
