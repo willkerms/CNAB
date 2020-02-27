@@ -3,3 +3,5 @@
 .project
 /vendor/
 composer.lock
+test/remessas/
+test/retornos/
