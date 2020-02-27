@@ -25,4 +25,7 @@ switch ($choice){
 	case 's':
 		require_once CNAB_DIR . 'test/TestSicoob.php';
 	break;
+	case 'sa':
+		require_once CNAB_DIR . 'test/TestSafra.php';
+	break;
 }

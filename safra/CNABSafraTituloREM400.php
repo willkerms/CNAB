@@ -43,53 +43,38 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	private $emissao;
 
 	/**
-	 * Identificação dá ocorrência.
-	 *
-	 * 01 = REMESSA
-	 * 02 = PEDIDO DE BAIXA
-	 * 03 = PEDIDO DE PROTESTO FALIMENTAR
-	 * 04 = CONCESSÃO DE ABATIMENTO
-	 * 05 = CANCELAMENTO DE ABATIMENTO CONCEDIDO
-	 * 06 = ALTERAÇÃO DE VENCIMENTO
-	 * 07 = ALTERAÇÃO DO CONTROLE DO PARTICIPANTE
-	 * 08 = ALTERAÇÃO DE SEU NÚMERO
-	 * 09 = PEDIDO DE PROTESTO
-	 * 18 = SUSTAR PROTESTO E BAIXAR TÍTULO
-	 * 19 = SUSTAR PROTESTO E MANTER EM CARTEIRA
-	 * 22 = TRANSFERÊNCIA CESSÃO CRÉDITO ID. PROD. 10
-	 * 23 = TRANSFERÊNCIA ENTRE CARTEIRAS
-	 * 24 = DEV TRANSFERÊNCIA ENTRE CARTEIRAS
-	 * 31 = ALTERAÇÃO DE OUTROS DADOS
-	 * 68 = ACERTO NOS DADOS DO RATEIO DE CRÉDITO
-	 * 69 = CANCELAMENTO DO RATEIO DE CRÉDITO
-	 *
+	 * 01 - NÃO RECEBER PRINCIPAL, SEM JUROS DE MORA
+	 * 02 - DEVOLVER, SE NÃO PAGO, ATÉ 15 DIAS APÓS O VENCIMENTO
+	 * 03 - DEVOLVER, SE NÃO PAGO, ATÉ 30 DIAS APÓS O VENCIMENTO
+	 * 07 - NÃO PROTESTAR 
+	 * 08 - NÃO COBRAR JUROS DE MORA
+	 * 16 - COBRAR MULTA
 	 * @var string
 	 */
-	private $idfOcorrencia = '01'; //Remessa
+	private $primInstrucao = '16'; //Não protestar
 
 	/**
-	 * Protestar (06)
-	 * Protesto Falimentar (05)
-	 * Decurso de prazo (18)
-	 * Não cobrar juros (08)
-	 * Não receber após vencimento (09)
-	 * Multas de 10% após o 4 dia do vencimento (10)
-	 * Não receber após o 8 dia do vencimento (11)
-	 * Cobrar encargos após o dia do vencimento (12)
-	 * Cobrar encargos após o 10 dia do vencimento (13)
-	 * Cobrar encargos após o 15 dia do vencimento (14)
-	 * Conceder desconto mesmo se pago após o vencimento (15)
+	 * 01 - Cobrar Juros de Mora
+	 * 10 - PROTESTO AUTOMÁTICO
 	 *
 	 * @var string
 	 */
-	private $primInstrucao = '06'; //Protestar
+	private $segInstrucao = '01'; //Apos 30 dias protestar
 
 	/**
 	 * Dias para Protesto/Dias para baixa por decurso de prazo
 	 *
 	 * @var string
 	 */
-	private $segInstrucao = '30'; //Apos 30 dias protestar
+	private $terInstrucao = '00'; //Dias para protesto
+
+	/**
+	 * 1 - Simples
+	 * 2 - Vinculada
+	 *
+	 * @var string
+	 */
+	private $tpCarteira = '1';
 
 	/**
 	 * Valor do desconto bonif. / dia
@@ -107,15 +92,6 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	 * @var integer
 	 */
 	private $condEmissaoCobrancao = 1;
-
-	/**
-	 * Ident. se emite boleto para Débito Automático
-	 * N= não registra na cobrança. Diferente de N registra e emite boleto
-	 *
-	 * @var string
-	 */
-	private $idenEmiteBoletoDebAut = 'N';
-
 	/**
 	 * Espécie do título
 	 *
@@ -186,19 +162,25 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	/**
 	 * @var string
 	 */
+	private $pagadorBairro;
+	/**
+	 * @var string
+	 */
+	private $pagadorCidade;
+	/**
+	 * @var string
+	 */
+	private $pagadorUF;
+
+	/**
+	 * @var string
+	 */
 	private $pagadorCep;
 
 	/**
 	 * @var string
 	 */
-	private $priMensagem;
-
-	/**
-	 * Segunda mensagem ou Sacador/Avalista
-	 *
-	 * @var string
-	 */
-	private $segMensagem;
+	private $sacadorAvalista;
 
 	/**
 	 * @return string $nossoNumero
@@ -250,13 +232,6 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	}
 
 	/**
-	 * @return string $idfOcorrencia
-	 */
-	public function getIdfOcorrencia() {
-		return $this->idfOcorrencia;
-	}
-
-	/**
 	 * @return string $primInstrucao
 	 */
 	public function getPrimInstrucao() {
@@ -271,6 +246,20 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	}
 
 	/**
+	 * @return string $terInstrucao
+	 */
+	public function getTerInstrucao() {
+		return $this->terInstrucao;
+	}
+
+	/**
+	 * @return string $tpCarteira
+	 */
+	public function getTpCarteira() {
+		return $this->tpCarteira;
+	}
+
+	/**
 	 * @return string $desconto
 	 */
 	public function getDesconto() {
@@ -282,13 +271,6 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	 */
 	public function getCondEmissaoCobrancao() {
 		return $this->condEmissaoCobrancao;
-	}
-
-	/**
-	 * @return string $idenEmiteBoletoDebAut
-	 */
-	public function getIdenEmiteBoletoDebAut() {
-		return $this->idenEmiteBoletoDebAut;
 	}
 
 	/**
@@ -372,6 +354,27 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	}
 
 	/**
+	 * @return string $pagadorBairro
+	 */
+	public function getPagadorBairro() {
+		return $this->pagadorBairro;
+	}
+
+	/**
+	 * @return string $pagadorCidade
+	 */
+	public function getPagadorCidade() {
+		return $this->pagadorCidade;
+	}
+
+	/**
+	 * @return string $pagadorUF
+	 */
+	public function getPagadoruf() {
+		return $this->pagadorUF;
+	}
+
+	/**
 	 * @return string $pagadorCep
 	 */
 	public function getPagadorCep() {
@@ -379,17 +382,10 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	}
 
 	/**
-	 * @return string $priMensagem
+	 * @return string $sacadorAvalista
 	 */
-	public function getPriMensagem() {
-		return $this->priMensagem;
-	}
-
-	/**
-	 * @return string $segMensagem
-	 */
-	public function getSegMensagem() {
-		return $this->segMensagem;
+	public function getSacadorAvalista() {
+		return $this->sacadorAvalista;
 	}
 
 	/**
@@ -442,13 +438,6 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	}
 
 	/**
-	 * @param string $idfOcorrencia
-	 */
-	public function setIdfOcorrencia($idfOcorrencia) {
-		$this->idfOcorrencia = $idfOcorrencia;
-	}
-
-	/**
 	 * @param string $primInstrucao
 	 */
 	public function setPrimInstrucao($primInstrucao) {
@@ -463,6 +452,20 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	}
 
 	/**
+	 * @param string $terInstrucao
+	 */
+	public function setTerInstrucao($terInstrucao) {
+		$this->terInstrucao = $terInstrucao;
+	}
+
+	/**
+	 * @param string $tpCarteira
+	 */
+	public function setTpCarteira($tpCarteira) {
+		$this->tpCarteira = $tpCarteira;
+	}
+
+	/**
 	 * @param number $desconto
 	 */
 	public function setDesconto($desconto) {
@@ -474,13 +477,6 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	 */
 	public function setCondEmissaoCobrancao($condEmissaoCobrancao) {
 		$this->condEmissaoCobrancao = $condEmissaoCobrancao;
-	}
-
-	/**
-	 * @param string $idenEmiteBoletoDebAut
-	 */
-	public function setIdenEmiteBoletoDebAut($idenEmiteBoletoDebAut) {
-		$this->idenEmiteBoletoDebAut = $idenEmiteBoletoDebAut;
 	}
 
 	/**
@@ -545,6 +541,26 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	public function setPagadorEndereco($pagadorEndereco) {
 		$this->pagadorEndereco = $pagadorEndereco;
 	}
+	
+	/**
+	 * @param string $pagadorBairro
+	 */
+	public function setPagadorBairro($pagadorBairro) {
+		$this->pagadorBairro = $pagadorBairro;
+	}
+
+	/**
+	 * @param string $pagadorCidade
+	 */
+	public function setPagadorCidade($pagadorCidade) {
+		$this->pagadorCidade = $pagadorCidade;
+	}
+	/**
+	 * @param string $pagadorUF
+	 */
+	public function setPagadorUF($pagadorUF) {
+		$this->pagadorUF = $pagadorUF;
+	}
 
 	/**
 	 * @param string $pagadorCep
@@ -554,19 +570,9 @@ class CNABSafraTituloREM400 extends CNABSafraTitulo{
 	}
 
 	/**
-	 * @param string $priMensagem
+	 * @param string $sacadorAvalista
 	 */
-	public function setPriMensagem($priMensagem) {
-		$this->priMensagem = $priMensagem;
+	public function setSacadorAvalista($sacadorAvalista) {
+		$this->sacadorAvalista = $sacadorAvalista;
 	}
-
-	/**
-	 * @param string $segMensagem
-	 */
-	public function setSegMensagem($segMensagem) {
-		$this->segMensagem = $segMensagem;
-	}
-
-
-
 }
