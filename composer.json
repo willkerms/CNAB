@@ -3,6 +3,7 @@
     "description": "Comunicacao Bancaria",
     "type": "library",
     "license": "GPL-2.0+",
+    "version": "1.1",
     "authors": [
         {
             "name": "Willker Moraes Silva",

@@ -1,0 +1,13 @@
+{
+	"02" : "Confirma\u00e7\u00e3o Entrada T\u00edtulo;",
+	"05" : "Liquida\u00e7\u00e3o Sem Registro: Identifica a liquida\u00e7\u00e3o de t\u00edtulo da modalidade \"SEM REGISTRO\";",
+	"06" : "Liquida\u00e7\u00e3o Normal: Identificar a liquida\u00e7\u00e3o de t\u00edtulo de modalidade \"REGISTRADA\", com exce\u00e7\u00e3o dos t\u00edtulos que forem liquidados em cart\u00f3rio (C\u00f3d. de movimento 15=Liquida\u00e7\u00e3o em Cart\u00f3rio);",
+	"09" : "Baixa de Titulo: Identificar as baixas de t\u00edtulos, com exce\u00e7\u00e3o da baixa realizada com o c\u00f3d. de movimento 10 (Baixa - Pedido Benefici\u00e1rio);",
+	"10" : "Baixa Solicitada (Baixa - Pedido Benefici\u00e1rio): Identificar as baixas de t\u00edtulos comandadas a pedido do Benefici\u00e1rio;",
+	"11" : "T\u00edtulos em Ser: Identifica os t\u00edtulos em carteira, que estiverem com a situa\u00e7\u00e3o \"em abarto\" (vencidos e a vencer).",
+	"14" : "Altera\u00e7\u00e3o de Vencimento;",
+	"15" : "Liquida\u00e7\u00e3o em Cart\u00f3rio: Identifica as liquida\u00e7\u00f5es dos t\u00edtulos ocorridas em cart\u00f3rios de protesto;",
+	"23" : "Encaminhado a Protesto: Identifica o recebimento da instru\u00e7\u00e3o de protesto",
+	"27" : "Confirma\u00e7\u00e3o Altera\u00e7\u00e3o Dados.",
+	"48" : "Confirma\u00e7\u00e3o de instru\u00e7\u00e3o de transfer\u00eancia de carteira/modalidade de cobran\u00e7a"
+}

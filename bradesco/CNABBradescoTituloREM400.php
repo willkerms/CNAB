@@ -43,25 +43,25 @@ class CNABBradescoTituloREM400 extends CNABBradescoTitulo{
 	private $emissao;
 
 	/**
-	 * IdentificaÁ„o d· ocorrÍncia.
+	 * Identifica√ß√£o d√° ocorr√™ncia.
 	 *
 	 * 01 = REMESSA
 	 * 02 = PEDIDO DE BAIXA
 	 * 03 = PEDIDO DE PROTESTO FALIMENTAR
-	 * 04 = CONCESS√O DE ABATIMENTO
+	 * 04 = CONCESS√ÉO DE ABATIMENTO
 	 * 05 = CANCELAMENTO DE ABATIMENTO CONCEDIDO
-	 * 06 = ALTERA«√O DE VENCIMENTO
-	 * 07 = ALTERA«√O DO CONTROLE DO PARTICIPANTE
-	 * 08 = ALTERA«√O DE SEU N⁄MERO
+	 * 06 = ALTERA√á√ÉO DE VENCIMENTO
+	 * 07 = ALTERA√á√ÉO DO CONTROLE DO PARTICIPANTE
+	 * 08 = ALTERA√á√ÉO DE SEU N√öMERO
 	 * 09 = PEDIDO DE PROTESTO
-	 * 18 = SUSTAR PROTESTO E BAIXAR TÕTULO
+	 * 18 = SUSTAR PROTESTO E BAIXAR T√çTULO
 	 * 19 = SUSTAR PROTESTO E MANTER EM CARTEIRA
-	 * 22 = TRANSFER NCIA CESS√O CR…DITO ID. PROD. 10
-	 * 23 = TRANSFER NCIA ENTRE CARTEIRAS
-	 * 24 = DEV TRANSFER NCIA ENTRE CARTEIRAS
-	 * 31 = ALTERA«√O DE OUTROS DADOS
-	 * 68 = ACERTO NOS DADOS DO RATEIO DE CR…DITO
-	 * 69 = CANCELAMENTO DO RATEIO DE CR…DITO
+	 * 22 = TRANSFER√äNCIA CESS√ÉO CR√âDITO ID. PROD. 10
+	 * 23 = TRANSFER√äNCIA ENTRE CARTEIRAS
+	 * 24 = DEV TRANSFER√äNCIA ENTRE CARTEIRAS
+	 * 31 = ALTERA√á√ÉO DE OUTROS DADOS
+	 * 68 = ACERTO NOS DADOS DO RATEIO DE CR√âDITO
+	 * 69 = CANCELAMENTO DO RATEIO DE CR√âDITO
 	 *
 	 * @var string
 	 */
@@ -71,14 +71,14 @@ class CNABBradescoTituloREM400 extends CNABBradescoTitulo{
 	 * Protestar (06)
 	 * Protesto Falimentar (05)
 	 * Decurso de prazo (18)
-	 * N„o cobrar juros (08)
-	 * N„o receber apÛs vencimento (09)
-	 * Multas de 10% apÛs o 4 dia do vencimento (10)
-	 * N„o receber apÛs o 8 dia do vencimento (11)
-	 * Cobrar encargos apÛs o dia do vencimento (12)
-	 * Cobrar encargos apÛs o 10 dia do vencimento (13)
-	 * Cobrar encargos apÛs o 15 dia do vencimento (14)
-	 * Conceder desconto mesmo se pago apÛs o vencimento (15)
+	 * N√£o cobrar juros (08)
+	 * N√£o receber ap√≥s vencimento (09)
+	 * Multas de 10% ap√≥s o 4 dia do vencimento (10)
+	 * N√£o receber ap√≥s o 8 dia do vencimento (11)
+	 * Cobrar encargos ap√≥s o dia do vencimento (12)
+	 * Cobrar encargos ap√≥s o 10 dia do vencimento (13)
+	 * Cobrar encargos ap√≥s o 15 dia do vencimento (14)
+	 * Conceder desconto mesmo se pago ap√≥s o vencimento (15)
 	 *
 	 * @var string
 	 */
@@ -100,7 +100,7 @@ class CNABBradescoTituloREM400 extends CNABBradescoTitulo{
 
 
 	/**
-	 * CondiÁ„o para emiss„o da papeleta de cobranÁa:
+	 * Condi√ß√£o para emiss√£o da papeleta de cobran√ßa:
 	 * 	1 = Banco emite e processa o registro.
 	 * 	2 = Cliente emite e o Banco somente processa o registro
 	 *
@@ -109,23 +109,23 @@ class CNABBradescoTituloREM400 extends CNABBradescoTitulo{
 	private $condEmissaoCobrancao = 1;
 
 	/**
-	 * Ident. se emite boleto para DÈbito Autom·tico
-	 * N= n„o registra na cobranÁa. Diferente de N registra e emite boleto
+	 * Ident. se emite boleto para D√©bito Autom√°tico
+	 * N= n√£o registra na cobran√ßa. Diferente de N registra e emite boleto
 	 *
 	 * @var string
 	 */
 	private $idenEmiteBoletoDebAut = 'N';
 
 	/**
-	 * EspÈcie do tÌtulo
+	 * Esp√©cie do t√≠tulo
 	 *
 	 * 01 - Duplicata
-	 * 02 - Nota PromissÛria
+	 * 02 - Nota Promiss√≥ria
 	 * 03 - Nota de Seguro
-	 * 04 - CobranÁa Seriada
+	 * 04 - Cobran√ßa Seriada
 	 * 05 - Recibo
-	 * 10 - Letras de C‚mbio
-	 * 11 - Nota de DÈbito
+	 * 10 - Letras de C√¢mbio
+	 * 11 - Nota de D√©bito
 	 * 12 - Duplicata de Serv.
 	 * 99 - Outros
 	 *
@@ -134,7 +134,7 @@ class CNABBradescoTituloREM400 extends CNABBradescoTitulo{
 	private $especie = '01';
 
 	/**
-	 * Data Limite P/ Concess„o de Desconto
+	 * Data Limite P/ Concess√£o de Desconto
 	 *
 	 * @var string
 	 */

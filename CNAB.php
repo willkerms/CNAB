@@ -2,7 +2,7 @@
 namespace CNAB;
 
 /**
- * Classe para geração de CNAB Bancário
+ * Classe para geraÃ§Ã£o de CNAB BancÃ¡rio
  *
  * @author Willker Moraes Silva
  * @since 2016-07-20
@@ -22,8 +22,8 @@ class CNAB {
 	 * @param mixed $pdType
 	 * @return self
 	 */
-	public function addField($value, $len = 1, $fill = ' ', $pdType = STR_PAD_LEFT){
-		$this->aFields[] = new CNABField($value, $len, $fill, $pdType);
+	public function addField($value, $len = 1, $fill = ' ', $pdType = STR_PAD_LEFT, $field = null, $desc = null){
+		$this->aFields[] = new CNABField($value, $len, $fill, $pdType, $field, $desc);
 		return $this;
 	}
 

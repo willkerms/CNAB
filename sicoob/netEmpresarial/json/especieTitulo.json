@@ -1,0 +1,19 @@
+{
+	"01" : "Duplicata Mercantil",
+	"02" : "Nota Promiss\u00f3ria",
+	"03" : "Nota de Seguro",
+	"05" : "Recibo",
+	"06" : "Duplicata Rural",
+	"08" : "Letra de C\u00e2mbio",
+	"09" : "Warrant",
+	"10" : "Cheque",
+	"12" : "Duplicata de Servi\u00e7o",
+	"13" : "Nota de D\u00e9bito",
+	"14" : "Triplicata Mercantil",
+	"15" : "Triplicata de Servi\u00e7o",
+	"18" : "Fatura",
+	"20" : "Ap\u00f3lice de Seguro",
+	"21" : "Mensalidade Escolar",
+	"22" : "Parcela de Cons\u00f3rcio",
+	"99" : "Outros"
+}

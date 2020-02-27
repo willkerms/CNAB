@@ -6,21 +6,21 @@ use CNAB\CNABUtil;
 use PQD\PQDAnnotation;
 
 /**
- * Registro de transação.
+ * Registro de transaÃ§Ã£o.
  *
  * @author Willker Moraes Silva
  */
 class CNABBradescoREGTrans extends PQDEntity{
 
 	/**
-	 * @field(name=idfRegistro, description=Identificação do Registro, type=int)
+	 * @field(name=idfRegistro, description=IdentificaÃ§Ã£o do Registro, type=int)
 	 *
 	 * @var string
 	 */
 	protected $idfRegistro;
 
 	/**
-	 * @field(name=tpInscEmpresa, description=Tipo de Inscrição Empresa, type=string)
+	 * @field(name=tpInscEmpresa, description=Tipo de InscriÃ§Ã£o Empresa, type=string)
 	 * @list({"01": "CPF", "02":"CNPJ", "03":"PIS/PASEP", "98": "N\u00e3o Tem", "99": "Outros"})
 	 *
 	 * @var string
@@ -28,14 +28,14 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $tpInscEmpresa;
 
 	/**
-	 * @field(name=inscEmpresa, description=Inscrição Empresa, type=string)
+	 * @field(name=inscEmpresa, description=InscriÃ§Ã£o Empresa, type=string)
 	 *
 	 * @var string
 	 */
 	protected $inscEmpresa;
 
 	/**
-	 * @field(name=agencia, description=Agência, type=string)
+	 * @field(name=agencia, description=AgÃªncia, type=string)
 	 *
 	 * @var string
 	 */
@@ -57,7 +57,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $contaCorrenteDV;
 
 	/**
-	 * @field(name=inscEmpresa, description=Inscrição Empresa, type=string)
+	 * @field(name=inscEmpresa, description=InscriÃ§Ã£o Empresa, type=string)
 	 *
 	 * @var string
 	 */
@@ -71,14 +71,14 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $seuNumero;
 
 	/**
-	 * @field(name=nossoNumero, description=Nosso Número, type=string)
+	 * @field(name=nossoNumero, description=Nosso NÃºmero, type=string)
 	 *
 	 * @var string
 	 */
 	protected $nossoNumero;
 
 	/**
-	 * @field(name=idfRateio, description=Identificador de Rateio Crédito, type=string)
+	 * @field(name=idfRateio, description=Identificador de Rateio CrÃ©dito, type=string)
 	 *
 	 * @var string
 	 */
@@ -92,42 +92,42 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $carteira;
 
 	/**
-	 * @field(name=tpMovimentacao, description=Identificação de Ocorrência, type=string)
+	 * @field(name=tpMovimentacao, description=IdentificaÃ§Ã£o de OcorrÃªncia, type=string)
 	 * @list("json/tpMovimentacao.json")
 	 * @var string
 	 */
 	protected $tpMovimentacao;
 
 	/**
-	 * @field(name=dtaOcorrencia, description=Data Ocorrência no Banco, type=date)
+	 * @field(name=dtaOcorrencia, description=Data OcorrÃªncia no Banco, type=date)
 	 *
 	 * @var string
 	 */
 	protected $dtaOcorrencia;
 
 	/**
-	 * @field(name=numDocumento, description=Número do Documento, type=string)
+	 * @field(name=numDocumento, description=NÃºmero do Documento, type=string)
 	 *
 	 * @var string
 	 */
 	protected $numDocumento;
 
 	/**
-	 * @field(name=idfTitBanco, description=Identificação do Título no Banco, type=string)
+	 * @field(name=idfTitBanco, description=IdentificaÃ§Ã£o do TÃ­tulo no Banco, type=string)
 	 *
 	 * @var string
 	 */
 	protected $idfTitBanco;
 
 	/**
-	 * @field(name=dtaVencimento, description=Data Vencimento do Título, type=date)
+	 * @field(name=dtaVencimento, description=Data Vencimento do TÃ­tulo, type=date)
 	 *
 	 * @var string
 	 */
 	protected $dtaVencimento;
 
 	/**
-	 * @field(name=vlrTitulo, description=Valor do Título, type=float)
+	 * @field(name=vlrTitulo, description=Valor do TÃ­tulo, type=float)
 	 *
 	 * @var float
 	 */
@@ -141,14 +141,14 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $bcoCobrador;
 
 	/**
-	 * @field(name=agCobrador, description=Agência Cobradora, type=string)
+	 * @field(name=agCobrador, description=AgÃªncia Cobradora, type=string)
 	 *
 	 * @var string
 	 */
 	protected $agCobrador;
 
 	/**
-	 * @field(name=despesasCobranca, description=Despesas de Cobrança, type=float)
+	 * @field(name=despesasCobranca, description=Despesas de CobranÃ§a, type=float)
 	 *
 	 * @var float
 	 */
@@ -162,7 +162,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $outrasDespesas;
 
 	/**
-	 * @field(name=jurosOpAtraso, description=Juros Operação em Atraso, type=float)
+	 * @field(name=jurosOpAtraso, description=Juros OperaÃ§Ã£o em Atraso, type=float)
 	 *
 	 * @var float
 	 */
@@ -176,7 +176,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $iofDevido;
 
 	/**
-	 * @field(name=abatimentoTit, description=Abatimento Concedido Sobre o Título, type=float)
+	 * @field(name=abatimentoTit, description=Abatimento Concedido Sobre o TÃ­tulo, type=float)
 	 *
 	 * @var float
 	 */
@@ -204,7 +204,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $jurosMora;
 
 	/**
-	 * @field(name=outrosCreditos, description=Outros Créditos, type=float)
+	 * @field(name=outrosCreditos, description=Outros CrÃ©ditos, type=float)
 	 *
 	 * @var float
 	 */
@@ -219,7 +219,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $motivoProtesto;
 
 	/**
-	 * @field(name=dtaCredito, description=Data Crédito, type=date)
+	 * @field(name=dtaCredito, description=Data CrÃ©dito, type=date)
 	 *
 	 * @var string
 	 */
@@ -234,7 +234,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $origemPagamento;
 
 	/**
-	 * @field(name=motivoOcorrencia, description=Motivo Ocorrência, type=string)
+	 * @field(name=motivoOcorrencia, description=Motivo OcorrÃªncia, type=string)
 	 * @list("json/motivoOcorrencia.json")
 	 *
 	 * @var string
@@ -242,14 +242,14 @@ class CNABBradescoREGTrans extends PQDEntity{
 	protected $motivoOcorrencia;
 
 	/**
-	 * @field(name=numeroCartorio, description=Número Cartório, type=string)
+	 * @field(name=numeroCartorio, description=NÃºmero CartÃ³rio, type=string)
 	 *
 	 * @var string
 	 */
 	protected $numeroCartorio;
 
 	/**
-	 * @field(name=numeroProtocolo, description=Número Protocolo, type=string)
+	 * @field(name=numeroProtocolo, description=NÃºmero Protocolo, type=string)
 	 *
 	 * @var string
 	 */
@@ -758,7 +758,7 @@ class CNABBradescoREGTrans extends PQDEntity{
 	}
 
 	/**
-	 * Retorna todos os campos destá classe
+	 * Retorna todos os campos destÃ¡ classe
 	 * return array
 	 */
 	public static function retAllFields(){

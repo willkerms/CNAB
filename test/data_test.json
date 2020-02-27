@@ -1,0 +1,42 @@
+{
+	"empresa" : {
+		"nome" : "EMPRESA TESTE LTDA",
+		"cnpj" : "12345678901234",
+		"agencia" : "0001",
+		"conta" : "12345",
+		"carteira" : "01",
+		"convenio" : "12345"
+	},
+	"titulos" : [
+		{
+			"id" : 1,
+			"nome" : "CLIENTE 1",
+			"cpf" : "68768241364",
+			"vencimento" : "2019-12-01",
+			"valor" : 1500.53,
+			"parcela" : 1,
+			"multa" : 1,
+			"mora" : 1,
+			"endereco" : "RUA DE TESTE",
+			"bairro" : "BAIRRO DE TESTE",
+			"cep" : "74010010",
+			"cidade" : "GOIANIA",
+			"uf" : "GO"
+		},
+		{
+			"id" : 2,
+			"nome" : "CLIENTE 2",
+			"cnpj" : "39227178000105",
+			"vencimento" : "2019-12-01",
+			"valor" : 13350.16,
+			"parcela" : 1,
+			"multa" : 1,
+			"mora" : 1,
+			"endereco" : "RUA DE TESTE 2",
+			"bairro" : "BAIRRO DE TESTE 2",
+			"cep" : "04180112",
+			"cidade" : "SAO PAULO",
+			"uf" : "SP"
+		}
+	]
+}
