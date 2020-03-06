@@ -47,10 +47,9 @@ class CNABBradescoREM400 extends CNABBradesco {
 		$this->addField("237", 3);//Código do Banco a ser debitado na Câmara de Compensação - Nº do Banco "237"
 		$this->addField($oTitulo->getMulta(), 1);//Campo de Multa - Se = 2 considerar percentual de multa. Se = 0, sem multa. Vide Obs
 		$this->addField($oTitulo->getMultaVlr(), 4, 0);//Percentual de multa - Percentual de multa a ser considerado
-		if(($oTitulo->getCondEmissaoCobrancao() == 1 && !is_null($oTitulo->getNossoNumero())) || $oTitulo->getCondEmissaoCobrancao() == 2)
-			$this->addField($this->retNossoNumeroOBJ($oTitulo->getNossoNumero()), 12);//Identificação do Título no Banco - Número Bancário para Cobrança Com e Sem Registro Vide
-		else
-			$this->addField($oTitulo->getNossoNumero(), 12, 0);//Identificação do Título no Banco - Número Bancário para Cobrança Com e Sem Registro Vide
+		
+		$this->addField($oTitulo->getNossoNumero(), 12, 0);//Identificação do Título no Banco - Número Bancário para Cobrança Com e Sem Registro Vide
+		
 		//$this->addField($oTitulo->getNossoNumero(), 11);//Identificação do Título no Banco - Número Bancário para Cobrança Com e Sem Registro Vide
 		//$this->addField("", 1);//Digito de Auto Conferencia do Número Bancário. - Digito N/N
 		$this->addField($oTitulo->getDesconto(), 10, 0);//Desconto Bonificação por dia - Valor do desconto bonif./dia
@@ -119,7 +118,7 @@ class CNABBradescoREM400 extends CNABBradesco {
 		$cont = 2;
 		$sum = 0.0;
 
-		for($num=0; $num <= strlen($sequencia); $num++) {
+		for($num = 0; $num < strlen($sequencia); $num++) {
 
 			$sum += substr($sequencia, $num, 1) * $cont;
 
