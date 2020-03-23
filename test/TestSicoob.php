@@ -152,7 +152,7 @@ class TestSicoob extends CNABTest{
 		$carteira = util::onlyNumbers($aEmpresa['carteira']);
 		$convenio = util::onlyNumbers($aEmpresa['convenio']);
 
-		$oRemessa240 = new CNABSicoobNetEmpresarialREM240(1, $aEmpresa['cnpj'], $agencia, $verificadorAgencia, $conta, $verificadorConta, $carteira, $convenio, $aEmpresa['nome'], 1);
+		$oRemessa240 = new CNABSicoobNetEmpresarialREM240(1, $aEmpresa['cnpj'], $agencia, $verificadorAgencia, $conta, $verificadorConta, $carteira, $convenio, substr($aEmpresa['nome'], 0, 30), 1);
 		foreach ($aTitulos as $aTitulo){
 
 			$oTitulo = new CNABSicoobNetEmpresarialTituloREM240();

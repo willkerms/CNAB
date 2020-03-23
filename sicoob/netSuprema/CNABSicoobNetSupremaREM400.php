@@ -21,7 +21,7 @@ class CNABSicoobNetSupremaREM400 extends CNABSicoobNetSuprema {
 		$this->addField("1", 1); //2
 		$this->addField("REMESSA", 7, ' ', STR_PAD_RIGHT); //3
 		$this->addField("1", 2, '0'); //4
-		$this->addField("COBRANÃA", 8, ' ', STR_PAD_RIGHT); //5
+		$this->addField("COBRANCA", 8, ' ', STR_PAD_RIGHT); //5
 		$this->addField("", 7); //6
 		$this->addField($this->getAgencia(), 4); //7
 		$this->addField($this->getVerificadorAgencia(), 1); //8

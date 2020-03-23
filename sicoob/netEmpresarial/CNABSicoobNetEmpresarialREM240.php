@@ -67,7 +67,7 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		$this->addField("40", 3, '0', STR_PAD_LEFT, 'layoutLote');
 		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
 		$this->addField($this->getTpPessoa(), 1, ' ', STR_PAD_LEFT, 'tipoInscricao');
-		$this->addField($this->getCpfCnpj(), 15, '0', STR_PAD_RIGHT, 'cpfCnpj');
+		$this->addField($this->getCpfCnpj(), 15, '0', STR_PAD_LEFT, 'cpfCnpj');
 		$this->addField(' ', 20, ' ', STR_PAD_LEFT, 'convenio');
 		$this->addField($this->getAgencia(), 5, '0', STR_PAD_LEFT, 'agencia');
 		$this->addField($this->getVerificadorAgencia(), 1, ' ', STR_PAD_LEFT, 'agenciaDV');
@@ -177,13 +177,29 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		$this->addField($oTitulo->getAceite(), 1, 'N', STR_PAD_LEFT, 'aceite');
 		$this->addField($oTitulo->getEmissao(), 8, '0', STR_PAD_LEFT, 'emissao');
 
-		$this->addField($oTitulo->getTpJuros(), 1, '0', STR_PAD_LEFT, 'codJuros');
-		$this->addField($oTitulo->getVencimento(), 8, '0', STR_PAD_LEFT, 'dataJuros');
-		$this->addField($oTitulo->getJuros(), 15, '0', STR_PAD_LEFT, 'juros');
+		//Juros
+		if(intval($oTitulo->getJuros()) > 0){
+			$this->addField($oTitulo->getTpJuros(), 1, '0', STR_PAD_LEFT, 'codJuros');
+			$this->addField($oTitulo->getVencimento(), 8, '0', STR_PAD_LEFT, 'dtaJuros');
+			$this->addField($oTitulo->getJuros(), 15, '0', STR_PAD_LEFT, 'juros');
+		}
+		else{
+			$this->addField('', 1, '0', STR_PAD_LEFT, 'codJuros');
+			$this->addField('', 8, '0', STR_PAD_LEFT, 'dtaJuros');
+			$this->addField('', 15, '0', STR_PAD_LEFT, 'juros');
+		}
 
-		$this->addField($oTitulo->getTpPrimDesconto(), 1, '0', STR_PAD_LEFT, 'codDesconto');
-		$this->addField($oTitulo->getDtPrimeiroDesconto(), 8, '0', STR_PAD_LEFT, 'dataDesconto1');
-		$this->addField($oTitulo->getPrimeiroDesconto(), 15, '0', STR_PAD_LEFT, 'valorDesconto1');
+		//Desconto
+		if(intval($oTitulo->getPrimeiroDesconto()) > 0){
+			$this->addField($oTitulo->getTpPrimDesconto(), 1, '0', STR_PAD_LEFT, 'codDesc1');
+			$this->addField($oTitulo->getDtPrimeiroDesconto(), 8, '0', STR_PAD_LEFT, 'dtaDesc1');
+			$this->addField($oTitulo->getPrimeiroDesconto(), 15, '0', STR_PAD_LEFT, 'vlrDesc1');			
+		}
+		else{
+			$this->addField('', 1, '0', STR_PAD_LEFT, 'codDesc1');
+			$this->addField('', 8, '0', STR_PAD_LEFT, 'dtaDesc1');
+			$this->addField('', 15, '0', STR_PAD_LEFT, 'vlrDesc1');			
+		}
 
 		$this->addField($oTitulo->getIof(), 15, '0', STR_PAD_LEFT, 'valorIOF');
 		$this->addField($oTitulo->getAbatimento(), 15, '0', STR_PAD_LEFT, 'valorAbatimentos');
@@ -207,6 +223,7 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		$this->addField("Q", 1, ' ', STR_PAD_LEFT, 'segmento');
 		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
 		$this->addField($oTitulo->getComandoMovimento(), 2, '0', STR_PAD_LEFT, 'codMov');
+		
 		$this->addField($oTitulo->getTpPagador(), 1, ' ', STR_PAD_LEFT, 'tpPagador');//43
 		$this->addField($oTitulo->getPagadorCpfCnpj(), 15, '0', STR_PAD_LEFT, 'inscPagador');//44
 		$this->addField(substr($oTitulo->getPagador(), 0, 40), 40, ' ', STR_PAD_RIGHT, 'pagador');//45
@@ -217,7 +234,7 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		$this->addField($oTitulo->getPagadorUF(), 2, 'uf');//50
 
 		$this->addField($oTitulo->getTpSacAvalista(), 1, ' ', STR_PAD_LEFT, 'tpSacAvalista');//43
-		$this->addField($oTitulo->getSacAvalistaCpfCnpj(), 15, '0', STR_PAD_LEFT, 'inscSacAvalista');//44
+		$this->addField($oTitulo->getSacAvalistaCpfCnpj(), 15, ' ', STR_PAD_LEFT, 'inscSacAvalista');//44
 		$this->addField($oTitulo->getSacAvalista(), 40, ' ', STR_PAD_RIGHT, 'sacAvalista');//45
 
 		$this->addField($this->codBancoCorresp, 3, '0', STR_PAD_LEFT, 'codBancoCorresp');//45
@@ -225,7 +242,54 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		$this->addField('', 8);//Uso exclusivo FEBRABAN
 		$this->addField("\r\n", 2);
 
-		//TODO: Segmento R ->Outros desconto, Multa & Informações
+		//Segmento R - Outros desconto, Multa & Informações
+		$this->addField("756", 3, ' ', STR_PAD_LEFT, 'banco');
+		$this->addField("1", 4, '0', STR_PAD_LEFT, 'lote');
+		$this->addField("3", 1, ' ', STR_PAD_LEFT, 'registro');
+		$this->addField($this->sequencial++, 5, "0", STR_PAD_LEFT, 'n_registro');
+		$this->addField("R", 1, ' ', STR_PAD_LEFT, 'segmento');
+		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
+		$this->addField($oTitulo->getComandoMovimento(), 2, '0', STR_PAD_LEFT, 'codMov');
+
+		$this->addField('0', 1, '0', STR_PAD_LEFT, 'codDesc2');//0 = Não conceder, 1 => Valor fixo, 2 = Percentual Fixo
+		$this->addField('', 8, '0', STR_PAD_LEFT, 'dtaDesc2');//Data do desconto
+		$this->addField('', 15, '0', STR_PAD_LEFT, 'vlrDesc2');//Valor/percentual
+		
+		$this->addField('0', 1, '0', STR_PAD_LEFT, 'codDesc3');//0 = Não conceder, 1 => Valor fixo, 2 = Percentual Fixo
+		$this->addField('', 8, '0', STR_PAD_LEFT, 'dtaDesc3');//Data do desconto
+		$this->addField('', 15, '0', STR_PAD_LEFT, 'vlrDesc3');//Valor/percentual
+
+		//Multa
+		if(intval($oTitulo->getMulta()) > 0){
+			$this->addField($oTitulo->getTpMulta(), 1, '0', STR_PAD_LEFT, 'codMulta');//0 = Insento, 1 => Valor fixo, 2 = Percentual Fixo
+			$this->addField($oTitulo->getVencimento(), 8, '0', STR_PAD_LEFT, 'dtaMulta');//Data do desconto
+			$this->addField($oTitulo->getMulta(), 15, '0', STR_PAD_LEFT, 'vlrMulta');//Valor/percentual
+		}
+		else{
+			$this->addField('0', 1, '0', STR_PAD_LEFT, 'codMulta');//0 = Insento, 1 => Valor fixo, 2 = Percentual Fixo
+			$this->addField('0', 8, '0', STR_PAD_LEFT, 'dtaMulta');//Data do desconto
+			$this->addField('0', 15, '0', STR_PAD_LEFT, 'vlrMulta');//Valor/percentual
+		}
+
+		$this->addField('', 10, ' ', STR_PAD_LEFT, 'infPagador');
+
+		$this->addField('', 40, ' ', STR_PAD_LEFT, 'mensagem3');
+		$this->addField('', 40, ' ', STR_PAD_LEFT, 'mensagem4');
+		
+		$this->addField('', 20);//Uso exclusivo FEBRABAN
+
+		$this->addField('', 8, '0', STR_PAD_LEFT, 'codOcrPagador');
+		$this->addField('', 3, '0', STR_PAD_LEFT, 'codOcrBanco');
+		$this->addField('', 5, '0', STR_PAD_LEFT, 'codOcrAgencia');
+		$this->addField('', 1, ' ', STR_PAD_LEFT, 'codOcrAgenciaDV');
+		$this->addField('', 12, '0', STR_PAD_LEFT, 'codOcrConta');
+		$this->addField('', 1, ' ', STR_PAD_LEFT, 'codOcrContaDV');
+		$this->addField('', 1, ' ', STR_PAD_LEFT, 'codOcrAgenciaContaDV');
+		
+		$this->addField('0', 1, '0', STR_PAD_LEFT, 'idfEmiAvisoDeb');//Ident. da Emissão do Aviso Déb
+		$this->addField('', 9);//Uso exclusivo FEBRABAN
+		$this->addField("\r\n", 2);
+
 		//TODO: Segmento S ->Informações & Impressão
 	}
 

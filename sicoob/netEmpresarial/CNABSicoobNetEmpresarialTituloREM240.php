@@ -89,11 +89,16 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	 * @var number
 	 */
 	private $tpJuros = '0';//Isento
-
+	
 	/**
 	 * @var number
 	 */
 	private $juros = 0.0;
+
+	/**
+	 * @var number
+	 */
+	private $tpMulta = '0';//Multa
 
 	/**
 	 * @var number
@@ -151,7 +156,7 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	/**
 	 * @var string
 	 */
-	private $tpSacAvalista;
+	private $tpSacAvalista = " ";
 
 	/**
 	 * @var string
@@ -326,14 +331,21 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	 * @return the $juros
 	 */
 	public function getJuros() {
-		return $this->juros;
+		return CNABUtil::onlyNumbers(CNABUtil::retNumber($this->juros));
+	}
+
+	/**
+	 * @return the $tpMulta
+	 */
+	public function getTpMulta() {
+		return $this->tpMulta;
 	}
 
 	/**
 	 * @return the $multa
 	 */
 	public function getMulta() {
-		return $this->multa;
+		return CNABUtil::onlyNumbers(CNABUtil::retNumber($this->multa));
 	}
 
 	/**
@@ -361,7 +373,7 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	 * @return the $primeiroDesconto
 	 */
 	public function getPrimeiroDesconto() {
-		return $this->primeiroDesconto;
+		return CNABUtil::onlyNumbers(CNABUtil::retNumber($this->primeiroDesconto));
 	}
 
 	/**
@@ -414,6 +426,11 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	 * @return the $tpSacAvalista
 	 */
 	public function getTpSacAvalista() {
+
+		if($this->tpSacAvalista === '' || $this->tpSacAvalista === ' '){
+			return " ";
+		}
+
 		switch ($this->tpSacAvalista){
 			case 0:
 			case "PF":
@@ -621,6 +638,13 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function setJuros($juros) {
 		$this->juros = $juros;
+	}
+
+	/**
+	 * @param string $tpMulta
+	 */
+	public function setTpMulta($tpMulta) {
+		$this->tpMulta = $tpMulta;
 	}
 
 	/**
