@@ -156,7 +156,7 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	/**
 	 * @var string
 	 */
-	private $tpSacAvalista = " ";
+	private $tpSacAvalista = "0";
 
 	/**
 	 * @var string
