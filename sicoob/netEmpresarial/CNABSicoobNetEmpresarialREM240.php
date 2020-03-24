@@ -233,8 +233,8 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		$this->addField(substr($oTitulo->getPagadorCidade(), 0, 15), 15, ' ', STR_PAD_RIGHT, 'cidade');//49
 		$this->addField($oTitulo->getPagadorUF(), 2, 'uf');//50
 
-		$this->addField($oTitulo->getTpSacAvalista(), 1, ' ', STR_PAD_LEFT, 'tpSacAvalista');//43
-		$this->addField($oTitulo->getSacAvalistaCpfCnpj(), 15, ' ', STR_PAD_LEFT, 'inscSacAvalista');//44
+		$this->addField($oTitulo->getTpSacAvalista(), 1, '0', STR_PAD_LEFT, 'tpSacAvalista');//43
+		$this->addField($oTitulo->getSacAvalistaCpfCnpj(), 15, '0', STR_PAD_LEFT, 'inscSacAvalista');//44
 		$this->addField($oTitulo->getSacAvalista(), 40, ' ', STR_PAD_RIGHT, 'sacAvalista');//45
 
 		$this->addField($this->codBancoCorresp, 3, '0', STR_PAD_LEFT, 'codBancoCorresp');//45
