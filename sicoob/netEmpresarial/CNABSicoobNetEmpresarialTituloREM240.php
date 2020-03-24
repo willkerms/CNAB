@@ -156,7 +156,7 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	/**
 	 * @var string
 	 */
-	private $tpSacAvalista = "0";
+	private $tpSacAvalista = " ";
 
 	/**
 	 * @var string
@@ -427,9 +427,8 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	 */
 	public function getTpSacAvalista() {
 
-		if($this->tpSacAvalista === '' || $this->tpSacAvalista === ' '){
-			return " ";
-		}
+		if($this->tpSacAvalista === '' || $this->tpSacAvalista === ' ')
+			return "0";
 
 		switch ($this->tpSacAvalista){
 			case 0:
