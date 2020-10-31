@@ -88,7 +88,7 @@ class CNABSicoobNetEmpresarialTituloREM240 extends CNABSicoobNetEmpresarialTitul
 	/**
 	 * @var number
 	 */
-	private $tpJuros = '0';//Isento
+	private $tpJuros = '0';//0 = Isento, 1 = Valor por dia, 2 = Taxa Mensal
 	
 	/**
 	 * @var number

@@ -238,7 +238,7 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		$this->addField($oTitulo->getSacAvalista(), 40, ' ', STR_PAD_RIGHT, 'sacAvalista');//45
 
 		$this->addField($this->codBancoCorresp, 3, '0', STR_PAD_LEFT, 'codBancoCorresp');//45
-		$this->addField($oTitulo->getNossoNumeroBcoCorresp(), 20, '0', STR_PAD_LEFT, 'nossoNumeroBancoCorresp');//45
+		$this->addField($oTitulo->getNossoNumeroBcoCorresp(), 20, ' ', STR_PAD_LEFT, 'nossoNumeroBancoCorresp');//45
 		$this->addField('', 8);//Uso exclusivo FEBRABAN
 		$this->addField("\r\n", 2);
 
