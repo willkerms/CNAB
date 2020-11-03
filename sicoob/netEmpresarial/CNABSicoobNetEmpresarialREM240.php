@@ -180,7 +180,7 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		//Juros
 		if(intval($oTitulo->getJuros()) > 0){
 			$this->addField($oTitulo->getTpJuros(), 1, '0', STR_PAD_LEFT, 'codJuros');
-			$this->addField($oTitulo->getVencimento(), 8, '0', STR_PAD_LEFT, 'dtaJuros');
+			$this->addField(date('dmY', $oTitulo->getVencimento('U') + 86400), 8, '0', STR_PAD_LEFT, 'dtaJuros');
 			$this->addField($oTitulo->getJuros(), 15, '0', STR_PAD_LEFT, 'juros');
 		}
 		else{
@@ -262,7 +262,7 @@ class CNABSicoobNetEmpresarialREM240 extends CNABSicoobNetEmpresarial {
 		//Multa
 		if(intval($oTitulo->getMulta()) > 0){
 			$this->addField($oTitulo->getTpMulta(), 1, '0', STR_PAD_LEFT, 'codMulta');//0 = Insento, 1 => Valor fixo, 2 = Percentual Fixo
-			$this->addField($oTitulo->getVencimento(), 8, '0', STR_PAD_LEFT, 'dtaMulta');//Data do desconto
+			$this->addField(date('dmY', $oTitulo->getVencimento('U') + 86400), 8, '0', STR_PAD_LEFT, 'dtaMulta');//Data do desconto
 			$this->addField($oTitulo->getMulta(), 15, '0', STR_PAD_LEFT, 'vlrMulta');//Valor/percentual
 		}
 		else{

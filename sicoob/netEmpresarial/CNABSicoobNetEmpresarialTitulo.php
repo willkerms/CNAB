@@ -37,8 +37,8 @@ class CNABSicoobNetEmpresarialTitulo{
 	/**
 	 * @return string $vencimento
 	 */
-	public function getVencimento() {
-		return CNABUtil::retDate($this->vencimento, 'dmY');
+	public function getVencimento($format = 'dmY') {
+		return CNABUtil::retDate($this->vencimento, $format);
 	}
 
 	/**
