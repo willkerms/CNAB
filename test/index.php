@@ -22,6 +22,9 @@ $aTests = array(
 $choice = PQDUtil::choiceCLI("Qual API deseja testar?", $aTests);
 
 switch ($choice){
+	case 'i':
+		require_once CNAB_DIR . 'test/TestItau.php';
+	break;
 	case 's':
 		require_once CNAB_DIR . 'test/TestSicoob.php';
 	break;

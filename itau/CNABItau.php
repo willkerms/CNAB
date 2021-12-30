@@ -37,7 +37,12 @@ class CNABItau extends CNAB{
 	 */
 	private $verificadorConta;
 
-	public function __construct($tpPessoa, $cpfCnpj, $agencia, $verificadorAgencia, $conta, $verificadorConta){
+	/**
+	 * @var string
+	 */
+	private $carteira;
+
+	public function __construct($tpPessoa, $cpfCnpj, $agencia, $verificadorAgencia, $conta, $verificadorConta, $carteira){
 
 		$this->tpPessoa = $tpPessoa;
 
@@ -48,6 +53,8 @@ class CNABItau extends CNAB{
 
 		$this->conta = $conta;
 		$this->verificadorConta = $verificadorConta;
+
+		$this->carteira = $carteira;
 	}
 	/**
 	 * @return string $tpPessoa
@@ -108,6 +115,13 @@ class CNABItau extends CNAB{
 	}
 
 	/**
+	 * @return string $carteira
+	 */
+	public function getCarteira() {
+		return $this->carteira;
+	}
+
+	/**
 	 * @param string $tpPessoa
 	 */
 	public function setTpPessoa($tpPessoa) {
@@ -147,5 +161,12 @@ class CNABItau extends CNAB{
 	 */
 	public function setVerificadorConta($verificadorConta) {
 		$this->verificadorConta = $verificadorConta;
+	}
+
+	/**
+	 * @param string $carteira
+	 */
+	public function setCarteira($carteira) {
+		$this->carteira = $carteira;
 	}
 }

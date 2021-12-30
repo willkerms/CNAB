@@ -25,8 +25,8 @@ class CNABItauTitulo{
 	/**
 	 * @return string $vencimento
 	 */
-	public function getVencimento() {
-		return CNABUtil::retDate($this->vencimento);
+	public function getVencimento($format = 'dmy') {
+		return CNABUtil::retDate($this->vencimento, $format);
 	}
 
 	/**
