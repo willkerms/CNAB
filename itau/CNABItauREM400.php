@@ -94,7 +94,7 @@ class CNABItauREM400 extends CNABItau {
 		$this->addField("\r\n", 2);
 
 		//(OPCIONAL – COMPLEMENTO DETALHE - MULTA)
-		//if(intval($oTitulo->getMulta()) > 0){
+		if(intval($oTitulo->getMulta()) > 0){
 			$this->addField("2", 1); //IDENTIFICAÇÃO DO REGISTRO TRANSAÇÃO
 			$this->addField($oTitulo->getMulta(), 1);//CODIGO DA MULTA - Se: 0 = sem multa, 1 = VALOR EM REAIS (FIXO),  2 =  considerar percentual de multa. Vide nota 35
 			$this->addField(date('dmY', $oTitulo->getVencimento('U') + 86400), 8, '0', STR_PAD_LEFT, 'dtaMulta');//DATA DA MULTA
@@ -102,7 +102,7 @@ class CNABItauREM400 extends CNABItau {
 			$this->addField('', 371, ' ');//COMPLEMENTO DE REGISTRO
 			$this->addField($this->sequencial++, 6, "0");
 			$this->addField("\r\n", 2);
-		//}
+		}
 	}
 
 	public function getFile(){
@@ -117,13 +117,22 @@ class CNABItauREM400 extends CNABItau {
 	public static function retNossoNumero($NossoNumero, $agencia, $conta, $carteira){
 
 		$NossoNumero = CNABUtil::fillString($NossoNumero, 8, "0");
-		$sequencia = CNABUtil::fillString($agencia, 4, "0") . CNABUtil::fillString($conta, 5, '0') . CNABUtil::fillString($carteira, 5, '0') . $NossoNumero;
+		$sequencia = CNABUtil::fillString($agencia, 4, "0") . CNABUtil::fillString($conta, 5, '0') . CNABUtil::fillString($carteira, 3, '0') . $NossoNumero;
 
 		$sum = 0.0;
 		$count = 2;
 
-		for( $num = 0; $num <= strlen($sequencia); $num++) {
-			$sum += substr($sequencia, $num, 1) * $count;
+		for( $num = strlen($sequencia)-1; $num >= 0; $num--) {
+			$mult = substr($sequencia, $num, 1) * $count;
+
+			if($mult >= 10){
+				$aMult = str_split($mult);
+				for ($i = 0; $i < count($aMult); $i++)
+					$sum += $aMult[$i];
+			}
+			else
+				$sum += $mult;
+
 			$count = $count == 2 ? 1 : 2;
 		}
 
