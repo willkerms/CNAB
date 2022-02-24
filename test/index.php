@@ -16,7 +16,8 @@ $aTests = array(
 	'b' => 'Bradesco',
 	'bb' => 'Banco do Brasil',
 	'i' => 'Itau',
-	'sa' => 'Safra'
+	'sa' => 'Safra',
+	'san' => 'Santander'
 );
 
 $choice = PQDUtil::choiceCLI("Qual API deseja testar?", $aTests);
@@ -30,5 +31,8 @@ switch ($choice){
 	break;
 	case 'sa':
 		require_once CNAB_DIR . 'test/TestSafra.php';
+	break;
+	case 'san':
+		require_once CNAB_DIR . 'test/TestSantander.php';
 	break;
 }
