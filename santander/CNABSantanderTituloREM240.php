@@ -131,7 +131,7 @@ class CNABSantanderTituloREM240 extends CNABSantanderTitulo{
 	/**
 	 * @var string
 	 */
-	private $moeda = "09";
+	private $moeda = "00";
 
 	/**
 	 * @var string

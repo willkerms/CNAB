@@ -146,7 +146,7 @@ class CNABSantanderREM240 extends CNABSantander {
 		//Nosso número
 		$nossoNumero = (int)$this->getCarteira() == 1 && $calcNossoNumero ? $this->retNossoNumeroOBJ($oTitulo->getNossoNumero()) : $oTitulo->getNossoNumero();
 		$this->addField($nossoNumero, 13, '0', STR_PAD_LEFT, 'nossoNumero');
-		$this->addField('1', 1, ' ', STR_PAD_RIGHT, 'tipoCobranca');
+		$this->addField('5', 1, ' ', STR_PAD_RIGHT, 'tipoCobranca');
 		$this->addField('1', 1, '0', STR_PAD_LEFT, 'formaCadastramento');
 		$this->addField('1', 1, '0', STR_PAD_LEFT, 'tipoDocumento');
 		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
@@ -192,9 +192,9 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField($oTitulo->getDiasProtesto(), 2, '0', STR_PAD_LEFT, 'prazoProtesto');
 		$this->addField('', 1, '0', STR_PAD_LEFT, 'codigoBaixa');
 		$this->addField("0", 1, '0', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
-		$this->addField('', 2, ' ', STR_PAD_LEFT, 'prazoBaixa');
+		$this->addField('', 2, '0', STR_PAD_LEFT, 'prazoBaixa');
 		$this->addField($oTitulo->getMoeda(), 2, '0', STR_PAD_LEFT, 'moeda');
-		$this->addField("0", 11, '0', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
+		$this->addField("", 11, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
 		$this->addField("\r\n", 2);//Uso exclusívo FEBRABAN
 
 		// $this->addField($oTitulo->getParcela(), 2, '0', STR_PAD_LEFT, 'parcela');
@@ -303,7 +303,7 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField("1", 4, '0', STR_PAD_LEFT, 'lote');
 		$this->addField("5", 1, ' ', STR_PAD_LEFT, 'registro');
 		$this->addField("", 9);//Uso Exclusivo FEBRABAN
-		$this->addField($this->sequencial, 6, '0', STR_PAD_LEFT, 'qtdRegistros');
+		$this->addField($this->sequencial -1, 6, '0', STR_PAD_LEFT, 'qtdRegistros');
 		$this->addField('', 217);//Uso Exclusivo FEBRABAN
 		$this->addField("\r\n", 2);
 	
@@ -329,7 +329,7 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField("9", 1, ' ', STR_PAD_LEFT, 'registro');
 		$this->addField("", 9);//Uso Exclusivo FEBRABAN
 		$this->addField('1', 6, '0', STR_PAD_LEFT, 'qtdLotes');
-		$this->addField($this->sequencial, 6, '0', STR_PAD_LEFT, 'qtdRegistros');
+		$this->addField($this->sequencial + 3, 6, '0', STR_PAD_LEFT, 'qtdRegistros');
 		$this->addField('', 211);//Uso Exclusivo FEBRABAN
 
 		$file = parent::getFile();
