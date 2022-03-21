@@ -37,7 +37,8 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField("", 8);//Uso Exclusivo FEBRABAN
 		$this->addField($this->getTpPessoa(), 1, ' ', STR_PAD_LEFT, 'tipoInscricao');
 		$this->addField($this->getCpfCnpj(), 15, '0', STR_PAD_LEFT, 'cpfCnpj');
-		$this->addField($this->codCedente . $this->codCedenteDV, 15, '0', STR_PAD_LEFT, 'convenio');
+		$this->addField($this->getAgencia(), 4, '0', STR_PAD_LEFT, 'agencia');
+		$this->addField($this->codCedente . $this->codCedenteDV, 11, '0', STR_PAD_LEFT, 'convenio');
 		$this->addField("", 25, ' ', STR_PAD_RIGHT);//Reservado uso Banco
 		$this->addField(strtoupper($beneficiario), 30, ' ', STR_PAD_RIGHT, 'nomeEmpresa');
 		$this->addField('Banco Santander', 30, ' ', STR_PAD_RIGHT, 'nomeBanco');
