@@ -236,7 +236,7 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField($oTitulo->getSacAvalista(), 40, ' ', STR_PAD_RIGHT, 'sacAvalista');//45
 		
 		$this->addField('', 3, '0', STR_PAD_LEFT, 'idCarne');
-		$this->addField($oTitulo->getParcela(), 3, '0', STR_PAD_LEFT, 'sequencialParcela');
+		$this->addField('', 3, '0', STR_PAD_LEFT, 'sequencialParcela');
 		$this->addField('', 3, '0', STR_PAD_LEFT, 'totalParcela');
 		$this->addField('', 3, '0', STR_PAD_LEFT, 'numeroPlano');
 		$this->addField("", 19, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
