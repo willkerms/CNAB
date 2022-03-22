@@ -135,12 +135,12 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
 		$this->addField($oTitulo->getComandoMovimento(), 2, '0', STR_PAD_LEFT, 'codMov');
 		$this->addField($this->getAgencia(), 4, '0', STR_PAD_LEFT, 'agencia');
-		$this->addField($this->getVerificadorAgencia(), 1, ' ', STR_PAD_LEFT, 'agenciaDV');
+		$this->addField($this->getVerificadorAgencia(), 1, '0', STR_PAD_LEFT, 'agenciaDV');
 		$this->addField($this->getConta(), 9, '0', STR_PAD_LEFT, 'conta');
 		$this->addField($this->getVerificadorConta(), 1, ' ', STR_PAD_LEFT, 'contaDV');
 
-		$this->addField('', 9, '0', STR_PAD_LEFT, 'contaCobrancaDestFIDC');
-		$this->addField('', 1, '0', STR_PAD_LEFT, 'verificadorCobrancaDestFIDC');
+		$this->addField($this->getConta(), 9, '0', STR_PAD_LEFT, 'contaCobrancaDestFIDC');
+		$this->addField($this->getVerificadorConta(), 1, '0', STR_PAD_LEFT, 'verificadorCobrancaDestFIDC');
 
 		$this->addField("", 2, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
 
@@ -155,8 +155,8 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField($oTitulo->getSeuNumero(), 15, '0', STR_PAD_LEFT, 'numeroDocumento');
 		$this->addField($oTitulo->getVencimento(), 8, '0', STR_PAD_LEFT, 'vencimento');
 		$this->addField($oTitulo->getValor(), 15, '0', STR_PAD_LEFT, 'valor');
-		$this->addField('', 4, '0', STR_PAD_LEFT, 'contaCobrancaBenefFIDC');
-		$this->addField('', 1, '0', STR_PAD_LEFT, 'verificadorCobrancaBenefFIDC');
+		$this->addField($this->getAgencia(), 4, '0', STR_PAD_LEFT, 'contaCobrancaBenefFIDC');
+		$this->addField($this->getVerificadorAgencia(), 1, '0', STR_PAD_LEFT, 'verificadorCobrancaBenefFIDC');
 		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
 		$this->addField($oTitulo->getEspecieTitulo(), 2, '0', STR_PAD_LEFT, 'especieTitulo');
 		$this->addField($oTitulo->getAceite(), 1, 'N', STR_PAD_LEFT, 'aceite');
@@ -191,7 +191,7 @@ class CNABSantanderREM240 extends CNABSantander {
 		$this->addField($oTitulo->getSeuNumero(), 25, '0', STR_PAD_LEFT, 'identificadorTitulo');
 		$this->addField($oTitulo->getAceite() == 'A' ? '1': '3', 1, '0', STR_PAD_LEFT, 'codigoProtesto');
 		$this->addField($oTitulo->getDiasProtesto(), 2, '0', STR_PAD_LEFT, 'prazoProtesto');
-		$this->addField('', 1, '0', STR_PAD_LEFT, 'codigoBaixa');
+		$this->addField(1, 1, '0', STR_PAD_LEFT, 'codigoBaixa');
 		$this->addField("0", 1, '0', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
 		$this->addField('', 2, '0', STR_PAD_LEFT, 'prazoBaixa');
 		$this->addField($oTitulo->getMoeda(), 2, '0', STR_PAD_LEFT, 'moeda');
