@@ -208,6 +208,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 		$this->addField($oTitulo->getMoeda(), 2, '0', STR_PAD_LEFT, 'moeda');
 		$this->addField('', 10, '0', STR_PAD_LEFT, 'numContratoOperacao');
 		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
+		$this->addField("\r\n", 2);
 		
 		// $nossoNumero = $calcNossoNumero ? $this->retNossoNumeroOBJ($oTitulo->getNossoNumero()) : $oTitulo->getNossoNumero();
 		// $nossoNumero = $this->codCedente . $this->codCedenteDV . $oTitulo->;
