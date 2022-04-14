@@ -204,7 +204,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 		$this->addField($oTitulo->getAceite() == 'A' ? '1': '3', 1, '0', STR_PAD_LEFT, 'codigoProtesto');
 		$this->addField($oTitulo->getDiasProtesto(), 2, '0', STR_PAD_LEFT, 'prazoProtesto');
 		$this->addField('', 1, '0', STR_PAD_LEFT, 'codigoBaixa'); // Campo não tratado pelo banco. Pode ser informado 'zeros' ou o número do contrato de cobrança.
-		$this->addField('', 2, '0', STR_PAD_LEFT, 'prazoBaixa');  // Campo não tratado pelo banco. Pode ser informado 'zeros' ou o número do contrato de cobrança.
+		$this->addField('', 3, '0', STR_PAD_LEFT, 'prazoBaixa');  // Campo não tratado pelo banco. Pode ser informado 'zeros' ou o número do contrato de cobrança.
 		$this->addField($oTitulo->getMoeda(), 2, '0', STR_PAD_LEFT, 'moeda');
 		$this->addField('', 10, '0', STR_PAD_LEFT, 'numContratoOperacao');
 		$this->addField("", 1, ' ', STR_PAD_LEFT);//Uso exclusivo FEBRABAN
