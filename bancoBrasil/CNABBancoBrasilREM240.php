@@ -300,19 +300,19 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 			$this->addField('0', 15, '0', STR_PAD_LEFT, 'vlrMulta');//Valor/percentual
 		}
 
-		$this->addField('', 10, ' ', 'informacaoSacado');//Uso exclusivo FEBRABAN
+		$this->addField('', 10, ' ', STR_PAD_LEFT, 'informacaoSacado');//Uso exclusivo FEBRABAN
 		$this->addField('', 40, ' ', STR_PAD_LEFT, 'mensagem3');
 		$this->addField('', 40, ' ', STR_PAD_LEFT, 'mensagem4');
 		$this->addField('', 20);//Uso exclusivo FEBRABAN
-		$this->addField('', 8, '0', 'CodOcorSacado');
-		$this->addField('', 3, '0', 'CodBancoContaDebito');
-		$this->addField('', 5, '0', 'CodAgenciaDebito');
-		$this->addField('', 1, '0', 'CodAgenciaDebitoDV');
-		$this->addField('', 1, '0', 'CodAgenciaDebitoDV');
-		$this->addField('', 12, '0', 'CodContaDebitoDV');
-		$this->addField('', 1, '0', 'CodContaDebitoDV');
-		$this->addField('', 1, '0', 'AgenciaContaDV');
-		$this->addField('', 1, '0', 'AvisoDebtAuto');
+		$this->addField('', 8, '0', STR_PAD_LEFT, 'CodOcorSacado');
+		$this->addField('', 3, '0', STR_PAD_LEFT, 'CodBancoContaDebito');
+		$this->addField('', 5, '0', STR_PAD_LEFT, 'CodAgenciaDebito');
+		$this->addField('', 1, '0', STR_PAD_LEFT, 'CodAgenciaDebitoDV');
+		$this->addField('', 1, '0', STR_PAD_LEFT, 'CodAgenciaDebitoDV');
+		$this->addField('', 12, '0', STR_PAD_LEFT, 'CodContaDebitoDV');
+		$this->addField('', 1, '0', STR_PAD_LEFT, 'CodContaDebitoDV');
+		$this->addField('', 1, '0', STR_PAD_LEFT, 'AgenciaContaDV');
+		$this->addField('', 1, '0', STR_PAD_LEFT, 'AvisoDebtAuto');
 		$this->addField('', 9);//Uso exclusivo FEBRABAN
 		$this->addField("\r\n", 2);
 		
@@ -358,7 +358,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 		$this->addField("", 9);//Uso Exclusivo FEBRABAN
 		$this->addField('1', 6, '0', STR_PAD_LEFT, 'qtdLotes');
 		$this->addField($this->sequencial + 3, 6, '0', STR_PAD_LEFT, 'qtdRegistros');
-		$this->addField('', 6, '0', 'qtdContas');
+		$this->addField('', 6, '0', STR_PAD_LEFT, 'qtdContas');
 		$this->addField('', 205);//Uso Exclusivo FEBRABAN
 
 		$file = parent::getFile();
