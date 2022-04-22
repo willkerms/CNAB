@@ -159,7 +159,8 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 
 		//Nosso número
 		$this->addField($this->codCedente . $this->codCedenteDV, 7, ' ', STR_PAD_RIGHT, 'nossoNumero');
-		$this->addField($oTitulo->getNossoNumero(), 13, ' ', STR_PAD_RIGHT, 'nossoNumero');
+		$this->addField($oTitulo->getNossoNumero(), 10, '0', STR_PAD_LEFT, 'nossoNumero');
+		$this->addField('', 3, ' ', STR_PAD_RIGHT, 'brancosNossoNumero');
 		$this->addField("7", 1, '0', STR_PAD_LEFT, 'codCarteira');
 		$this->addField('1', 1, '0', STR_PAD_LEFT, 'formaCadastramento');
 		$this->addField('1', 1, '0', STR_PAD_LEFT, 'tipoDocumento');
@@ -168,7 +169,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 		$this->addField($oTitulo->getSeuNumero(), 15, '0', STR_PAD_LEFT, 'numeroDocumento');
 		$this->addField($oTitulo->getVencimento(), 8, '0', STR_PAD_LEFT, 'vencimento');
 		$this->addField($oTitulo->getValor(), 15, '0', STR_PAD_LEFT, 'valor');
-		$this->addField($this->getAgencia(), 5, '0', STR_PAD_LEFT, 'agencia');
+		$this->addField('', 5, '0', STR_PAD_LEFT, 'agencia');
 		$this->addField('', 1, ' ', STR_PAD_LEFT, 'agenciaDV');
 		$this->addField($oTitulo->getEspecieTitulo(), 2, '0', STR_PAD_LEFT, 'especieTitulo');
 		$this->addField($oTitulo->getAceite(), 1, 'N', STR_PAD_LEFT, 'aceite');
@@ -309,8 +310,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 		$this->addField('', 3, '0', STR_PAD_LEFT, 'CodBancoContaDebito');
 		$this->addField('', 5, '0', STR_PAD_LEFT, 'CodAgenciaDebito');
 		$this->addField('', 1, '0', STR_PAD_LEFT, 'CodAgenciaDebitoDV');
-		$this->addField('', 1, '0', STR_PAD_LEFT, 'CodAgenciaDebitoDV');
-		$this->addField('', 12, '0', STR_PAD_LEFT, 'CodContaDebitoDV');
+		$this->addField('', 12, '0', STR_PAD_LEFT, 'CodContaDebito');
 		$this->addField('', 1, '0', STR_PAD_LEFT, 'CodContaDebitoDV');
 		$this->addField('', 1, '0', STR_PAD_LEFT, 'AgenciaContaDV');
 		$this->addField('', 1, '0', STR_PAD_LEFT, 'AvisoDebtAuto');
@@ -332,7 +332,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 		$this->addField("1", 4, '0', STR_PAD_LEFT, 'lote');
 		$this->addField("5", 1, ' ', STR_PAD_LEFT, 'registro');
 		$this->addField("", 9);//Uso Exclusivo FEBRABAN
-		$this->addField($this->sequencial -1, 6, '0', STR_PAD_LEFT, 'qtdRegistros');
+		$this->addField($this->sequencial + 1, 6, '0', STR_PAD_LEFT, 'qtdRegistros');
 		$this->addField('', 217);//Uso Exclusivo FEBRABAN
 		$this->addField("\r\n", 2);
 	
@@ -354,7 +354,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 
 		//Trailler do arquivo
 		$this->addField("001", 3, '0', STR_PAD_LEFT, 'banco');
-		$this->addField("1", 4, '9', STR_PAD_LEFT, 'lote');
+		$this->addField("9", 4, '9', STR_PAD_LEFT, 'lote');
 		$this->addField("9", 1, ' ', STR_PAD_LEFT, 'registro');
 		$this->addField("", 9);//Uso Exclusivo FEBRABAN
 		$this->addField('1', 6, '0', STR_PAD_LEFT, 'qtdLotes');
