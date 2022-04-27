@@ -86,7 +86,7 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 		$this->addField("0014", 4, '0', STR_PAD_LEFT, 'cobrancaCedente');
 		$this->addField(substr((string) $this->getCarteira(), 0, 2), 2, '0', STR_PAD_LEFT, 'carteira');
 		$this->addField(substr((string) $this->getCarteira(), 2, 3), 3, '0', STR_PAD_LEFT, 'variacaoCarteira'); //TODO
-		$this->addField("TS", 2, ' ', STR_PAD_RIGHT, "identificadorTeste"); // TS para teste ou em branco para produção
+		$this->addField("", 2, ' ', STR_PAD_RIGHT, "identificadorTeste"); // TS para teste ou em branco para produção
 		$this->addField($this->getAgencia(), 5, '0', STR_PAD_LEFT, 'agencia');
 		$this->addField(mb_strtoupper((string) $this->getVerificadorAgencia()), 1, ' ', STR_PAD_LEFT, 'agenciaDV'); // Obs. Em caso de dígito X informar maiúsculo.
 		$this->addField($this->getConta(), 12, '0', STR_PAD_LEFT, 'conta');
