@@ -159,7 +159,8 @@ class CNABBancoBrasilREM240 extends CNABBancoBrasil {
 
 		//Nosso número
 		$this->addField($this->codCedente . $this->codCedenteDV, 7, ' ', STR_PAD_RIGHT, 'nossoNumero');
-		$this->addField($oTitulo->getNossoNumero(), 10, '0', STR_PAD_LEFT, 'nossoNumero');
+		// Feito a modificação para convênios de 7 posições. Neste caso, não há o cálculo do nosso número.
+		$this->addField(strlen($this->codCedente . $this->codCedenteDV) == 7 ? substr($oTitulo->getNossoNumero(), 0, -1) : $oTitulo->getNossoNumero(), 10, '0', STR_PAD_LEFT, 'nossoNumero');
 		$this->addField('', 3, ' ', STR_PAD_RIGHT, 'brancosNossoNumero');
 		$this->addField("7", 1, '0', STR_PAD_LEFT, 'codCarteira');
 		$this->addField('1', 1, '0', STR_PAD_LEFT, 'formaCadastramento');
