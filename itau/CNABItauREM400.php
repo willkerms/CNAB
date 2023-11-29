@@ -71,7 +71,7 @@ class CNABItauREM400 extends CNABItau {
 		$this->addField($oTitulo->getPrimInstrucao(), 2, ' ', STR_PAD_RIGHT);//1ª INSTRUÇÃO DE COBRANÇA
 		$this->addField($oTitulo->getSegInstrucao(), 2, ' ', STR_PAD_RIGHT);//2ª INSTRUÇÃO DE COBRANÇA
 		$this->addField($oTitulo->getMora(), 13, '0');//VALOR DE MORA POR DIA DE ATRASO
-		$this->addField($oTitulo->getDtaLimitDesc(), 6);//DATA LIMITE PARA CONCESSÃO DE DESCONTO
+		$this->addField($oTitulo->getDtaLimitDesc(), 6, '0');//DATA LIMITE PARA CONCESSÃO DE DESCONTO
 		$this->addField($oTitulo->getDesconto(), 13, '0');//VALOR DO DESCONTO A SER CONCEDIDO
 		$this->addField($oTitulo->getVlrIOF(), 13, '0');//VALOR DO I.O.F. RECOLHIDO P/ NOTAS SEGURO
 		$this->addField($oTitulo->getVlrAbatimento(), 13, '0');//VALOR DO ABATIMENTO A SER CONCEDIDO
@@ -96,7 +96,7 @@ class CNABItauREM400 extends CNABItau {
 		//(OPCIONAL – COMPLEMENTO DETALHE - MULTA)
 		if(intval($oTitulo->getMulta()) > 0){
 			$this->addField("2", 1); //IDENTIFICAÇÃO DO REGISTRO TRANSAÇÃO
-			$this->addField($oTitulo->getMulta(), 1);//CODIGO DA MULTA - Se: 0 = sem multa, 1 = VALOR EM REAIS (FIXO),  2 =  considerar percentual de multa. Vide nota 35
+			$this->addField(2, 1);//CODIGO DA MULTA - Se: 0 = sem multa, 1 = VALOR EM REAIS (FIXO),  2 =  considerar percentual de multa. Vide nota 35
 			$this->addField(date('dmY', $oTitulo->getVencimento('U') + 86400), 8, '0', STR_PAD_LEFT, 'dtaMulta');//DATA DA MULTA
 			$this->addField($oTitulo->getMultaVlr(), 13, 0);//Percentual ou valor da multa
 			$this->addField('', 371, ' ');//COMPLEMENTO DE REGISTRO
