@@ -96,7 +96,7 @@ class CNABItauREM400 extends CNABItau {
 		//(OPCIONAL – COMPLEMENTO DETALHE - MULTA)
 		if(intval($oTitulo->getMulta()) > 0){
 			$this->addField("2", 1); //IDENTIFICAÇÃO DO REGISTRO TRANSAÇÃO
-			$this->addField(2, 1);//CODIGO DA MULTA - Se: 0 = sem multa, 1 = VALOR EM REAIS (FIXO),  2 =  considerar percentual de multa. Vide nota 35
+			$this->addField($oTitulo->getMulta(), 1);//CODIGO DA MULTA - Se: 0 = sem multa, 1 = VALOR EM REAIS (FIXO),  2 =  considerar percentual de multa. Vide nota 35
 			$this->addField($oTitulo->getVencimento('dmY'), 8, '0', STR_PAD_LEFT, 'dtaMulta');//DATA DA MULTA
 			$this->addField($oTitulo->getMultaVlr(), 13, 0);//Percentual ou valor da multa
 			$this->addField('', 371, ' ');//COMPLEMENTO DE REGISTRO
